@@ -1,1 +1,3 @@
-# IS2425_A
+Crochet App
+
+Project for Programming Class
