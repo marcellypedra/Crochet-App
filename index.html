@@ -1,29 +1,80 @@
-<HTML>
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <script src="Arrays.js" defer></script>
+        <title>Your Yarn.com</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
+        
+        
     </head>
     <body>
-        <div> 
-            <h3>Programming Practicing</h3>
-            <br>
-            
-
-            <label>Insert first number:</label>
-            <input type="number" id="Numbera">
-            <label>Insert second number:</label>
-            <input type="number" id="Numberb">
-            <label>Insert number for list:</label>
-            <input type="number" name="nlist" id="nlista">
-            <input type="number" name="nlist" id="nlistb">
-            <input type="number" name="nlist" id="nlistc">
-        
-        <input type="button" value="Click on Me" id="clickme">
-
-        
-        <label> Result:</label>
-        <input type="text" id="resultbox" readonly>
-
-        
+        <section id="showHeader"></section>    
+        <div class="modal-search" id="resultsModal">
+            <div class="modal-content-search">
+                <div id="results"></div>
+            </div>
         </div>
+        <div id="modalSell" class="modal-sell">
+            <div class="modal-content-sell">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sell</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                </div>
+                <div class="modal-body-sell">
+                    <form id="sellForm" role="sellForm" role="form">
+                        <div class="form-group">
+                            <label for="fullName"><span class="glyphicon glyphicon-user"></span> Full name</label>
+                            <input type="text" class="form-control" id="fullName" placeholder="Enter full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><span class="glyphicon glyphicon-user"></span> E-mail</label>
+                            <input type="text" class="form-control" id="email" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="4" cols="51" class="form-control" id="message" placeholder="We're here to help! What can we do for you?"></textarea>
+                        </div>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+                </div>      
+            </div>
+        </div> 
+        <!-- Confirmation Modal -->
+        <div id="contactModal" class="modal-contact">
+            <div class="modal-content-contact">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thank You!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>A consultant will be in contact with you shortly. We appreciate your interest!</p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel">
+            <div class="column buy">
+                <h4>Homebuyer Announcements</h4>
+                <h6>Stay informed on new homes for sale, market updates, and important news for prospective buyers.</h6>
+                <div class="announceBuy"></div>
+                <div class="button-container">
+                    <button class="prev-buy">Previous</button>
+                    <button class="next-buy">Next</button>
+                </div>
+            </div>
+            <div class="column rent">
+                <h4>Rental Announcements</h4>
+                <h6>Discover the latest rental opportunities, exclusive deals, and important updates for renters.</h6>
+                <div class="announceRent"></div>
+                <div class="button-container">
+                    <button class="prev-rent">Previous</button>
+                    <button class="next-rent">Next</button>
+                </div>
+            </div>
+        </div>  
+        <section id="showFooter"></section>    
+        
+        
+        
+        <script type="module" src="script/script.js"></script>    
     </body>
-</HTML>
+</html>
