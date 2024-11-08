@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTE
     const footerHTML = `
         <section class="footer">
             <div>
-                <p>Since ${new Date().getFullYear()} helping you to knit your dreams! <b>H</b>ome <b>S</b>weet <b>H</b>ome</p>
+                <p>Since ${new Date().getFullYear()} helping you to knit your dreams!</p>
                 <p>&copy; ${new Date().getFullYear()} My Website. All rights reserved.</p>
             </div>
             <div>
