@@ -7,10 +7,9 @@
   margin: auto;
 }
 
-/* Hide the images by default */
-.mySlides {
-  display: none;
-}
+.active {
+    background-color: #717171;
+  }
 
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
