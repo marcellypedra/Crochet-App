@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTE
     const headerHTML = `
             <section class="header">
             <div class="btnNavDiv">
-                <a href="index.html"><img src="img/yarn.png" alt="Logo" class="logo" id="logo" style="width:40px;height:40px;"></a>
+                <!-- <a href="index.html"><img src="img/yarn.png" alt="Logo" class="logo" id="logo" style="width:40px;height:40px;"></a> -->
                 <nav id="menu" class="navbar navbar-expand-lg navbar-light">
                     <a id="nome" class="navbar-brand" href="#"></a>
                             <ul class="nav-list navbar-nav ml-auto">
