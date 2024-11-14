@@ -1,0 +1,52 @@
+#main-header {
+  position: fixed;
+  top: 0;
+  max-width: 1200px;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+.header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(72, 42, 72);
+  padding: 10px 0;
+  
+}
+.headercontent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.logocontainer {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  margin-right: 20px;
+}
+.headertext h3 {
+  color: rgb(232, 230, 230);
+}
+.headermenu{
+  margin-top: 10px;
+}
+.navbar {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+}
+.nav-item {
+  margin: 0;
+  padding: 0;
+}
+.footer {
+  background-color: rgb(72, 42, 72);;
+  color: rgb(53, 34, 53);;
+  padding: 20px;
+  text-align: center;
+}
