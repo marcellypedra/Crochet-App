@@ -60,17 +60,6 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.formLogin .forgot-password {
-  text-align: right;
-  margin-top: 10px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.formLogin .forgot-password a {
-  color: var(--text-secondary);
-  text-decoration: underline;
-}
 .btnForm {
   display: flex;
   justify-content: space-between;
@@ -86,20 +75,12 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  color: var(--secondary-color);
+  color:rgb(161, 123, 161) ;
 }
-.btn[type="submit"] {
-  background-color: var(--accent-color-teal);
+.btn:hover {
+  background-color: hsl(63, 74%, 65%); /* Darker shade of teal */
 }
-.btn[type="submit"]:hover {
-  background-color: #16a085; /* Darker shade of teal */
-}
-.btn[type="reset"] {
-  background-color: var(--accent-color-orange);
-}
-.btn[type="reset"]:hover {
-  background-color: #d35400; /* Darker shade of orange */
-}
+
 .formLogin #logo {
   height: 30px;
   width: auto;
