@@ -1,0 +1,52 @@
+[
+    {
+        "name": "Merino Wool Yarn",
+        "type": "yarn",
+        "description": "Soft and warm, perfect for cozy scarves and sweaters."
+    },
+    {
+        "name": "Cotton Yarn",
+        "type": "yarn",
+        "description": "Lightweight and breathable, ideal for summer projects."
+    },
+    {
+        "name": "Alpaca Yarn",
+        "type": "yarn",
+        "description": "Luxuriously soft and hypoallergenic, great for winter accessories."
+    },
+    {
+        "name": "Silk Yarn",
+        "type": "yarn",
+        "description": "Smooth and shiny, ideal for delicate and drapey items."
+    },
+    {
+        "name": "Acrylic Yarn",
+        "type": "yarn",
+        "description": "Affordable and durable, a great all-purpose yarn."
+    },
+    {
+        "name": "Linen Yarn",
+        "type": "yarn",
+        "description": "Strong and cool, perfect for summer garments."
+    },
+    {
+        "name": "Bamboo Yarn",
+        "type": "yarn",
+        "description": "Eco-friendly and soft, ideal for lightweight projects."
+    },
+    {
+        "name": "Cashmere Yarn",
+        "type": "yarn",
+        "description": "Extremely soft and luxurious, perfect for scarves and shawls."
+    },
+    {
+        "name": "Mohair Yarn",
+        "type": "yarn",
+        "description": "Fluffy and warm, ideal for creating airy and textured knits."
+    },
+    {
+        "name": "Wool Blend Yarn",
+        "type": "yarn",
+        "description": "A mix of wool and other fibers, combining durability with warmth."
+    }
+]
