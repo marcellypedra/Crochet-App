@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTE
             </ul>
         </nav>
 </div>
+
+<link rel="stylesheet" href="style.css">
 `;
     const footerHTML = `
         <section class="footer">
