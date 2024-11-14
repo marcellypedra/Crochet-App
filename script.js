@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTE
 });
 
 function openPage(pageName) {
-    window.location = `${pageName}.html`;
+    window.location.href = `${pageName}.html`;
 }
 // Fetch data from the JSON file and populate the dropdown
 async function loadDropdownFromJSON() {
