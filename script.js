@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTE
     const currentFile = window.location.pathname.split("/").pop();
     const headerHTML = `
             <section class="header">
-            
+            <div class="logo-container">
+            <a href="#" onclick="openPage('index')"><img src="img/logo.jpeg" alt="MyYarn" class="icons" id="logo"></a>
+            </div>
             <div class="btnNavDiv">
                 <nav id="menu" class="navbar navbar-expand-lg navbar-light">
                     <a id="nome" class="navbar-brand" href="#"></a>
