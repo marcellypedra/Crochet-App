@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(72, 42, 72);
+  background-color: rgb(251, 250, 253);
   padding: 10px 0;
   
 }
@@ -22,18 +22,20 @@
   transition: all 0.3s ease;
 }
 .logocontainer {
+  height: 50px;
+  width: 160px;
   display: flex;
   justify-content: center; 
   align-items: center;
   margin-right: 20px;
 }
 .headertext h3 {
-  color: rgb(232, 230, 230);
+  color: rgb(18, 17, 17);
 }
 .headermenu{
   margin-top: 10px;
 }
-.navbar {
+.navlist {
   display: flex;
   list-style: none;
   margin: 0;
@@ -45,7 +47,7 @@
   padding: 0;
 }
 .footer {
-  background-color: rgb(72, 42, 72);;
+  background-color: rgb(161, 123, 161);;
   color: rgb(53, 34, 53);;
   padding: 20px;
   text-align: center;
