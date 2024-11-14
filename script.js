@@ -7,17 +7,16 @@ document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTE
             <div class="headertext">
                 <h3 id="headertitle">${currentFile === "index.html" ? "Welcome to Your Yarn.com!" : "Your Yarn.com"}</h3>
             </div>  
-            <div class="logocontainer">  
-                <a href="#" onclick="openPage('index')"><img src="img/logo.jpeg" alt="MyYarn" class="icons" id="logo"></a>
-            </div>
-        </div>
     </div>
-            <nav class="headermenu">
-                <ul class=navlist> 
-                <li class="navitem"><a class="nav-link" href="project.html">My Projects</a></li>
-                <li class="navitem"><a class="nav-link" href="material.html">My Material list</a></li>
-                </ul>
-            </nav>
+        <div class="logocontainer">  
+        <a href="#" onclick="openPage('index')"><img src="img/logo.jpeg" alt="MyYarn" class="icons" id="logo"></a>
+        </div>
+        <nav class="headermenu">
+            <ul class=navlist> 
+            <li class="navitem"><a class="nav-link" href="project.html">My Projects</a></li>
+            <li class="navitem"><a class="nav-link" href="material.html">My Material list</a></li>
+            </ul>
+        </nav>
 </div>
 `;
     const footerHTML = `
