@@ -1,3 +1,21 @@
+    // Add Header Section with Dynamic Content
+    const currentFile = window.location.pathname.split("/").pop();
+    const pageContent = {
+        "index.html": {
+            title: "Welcome to Your Yarn.com!",
+        },
+        "user.html": {
+            title: "Your Yarn.com"
+        },
+        "material.html": {
+            title: "Your Yarn.com supplies",
+        },
+        "project.html": {
+            title: "Your Yarn.com projects",
+        }
+    };
+
+    const { title = "", subtitle = "" } = pageContent[currentFile] || {};
 document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTER
     const currentFile = window.location.pathname.split("/").pop();
     const headerHTML = `
@@ -5,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTE
     <div class="headercontainer">
         <div class="headercontent">
             <div class="headertext">
-                <h3 id="headertitle">${currentFile === "index.html" ? "Welcome to Your Yarn.com!" : "Your Yarn.com"}</h3>
+                <h3 id="header-title">${title}</h3>
             </div>  
     </div>
         <div class="logocontainer">  
