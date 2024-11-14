@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTE
             </div>  
     </div>
         <div class="logocontainer">  
-        <a href="#" onclick="openPage('index')"><img src="img/logo.jpeg" alt="MyYarn" class="icons" id="logo"></a>
+        <a href="#" onclick="openPage('index')"><img src="img/logo.jpeg" alt="MyYarn" class="logo" id="logo"></a>
         </div>
         <nav class="headermenu">
             <ul class=navlist> 
