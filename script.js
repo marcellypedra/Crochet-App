@@ -7,12 +7,12 @@
         "user.html": {
             title: "Your Yarn.com"
         },
-        "project.html": {
+        "Nproject.html": {
             title: "Your Yarn.com projects",
         }
     };
 
-    const { title = "", subtitle = "" } = pageContent[currentFile] || {};
+    const { title = ""} = pageContent[currentFile] || {};
 document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTER
     const currentFile = window.location.pathname.split("/").pop();
     const headerHTML = `
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTE
 });
 
 function openPage(pageName) {
-    window.location.href = `${pageName}.html`;
+    window.location.href = pageName;
 }
 // Fetch data from the JSON file and populate the dropdown
 async function loadDropdownFromJSON() {
