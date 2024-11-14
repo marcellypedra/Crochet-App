@@ -60,11 +60,6 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.btnForm {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-}
 /* Styling for form buttons */
 .btn {
   width: 48%;
