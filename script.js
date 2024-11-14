@@ -7,9 +7,6 @@
         "user.html": {
             title: "Your Yarn.com"
         },
-        "material.html": {
-            title: "Your Yarn.com supplies",
-        },
         "project.html": {
             title: "Your Yarn.com projects",
         }
@@ -59,6 +56,10 @@ document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTE
     const footerContainer = document.getElementById("showFooter");
     if (footerContainer) footerContainer.innerHTML = footerHTML;
 });
+
+function openPage(pageName) {
+    window.location = `${pageName}.html`;
+}
 // Fetch data from the JSON file and populate the dropdown
 async function loadDropdownFromJSON() {
     try {
