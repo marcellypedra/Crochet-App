@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTE
     const currentFile = window.location.pathname.split("/").pop();
     const headerHTML = `
             <section class="header">
+            
             <div class="btnNavDiv">
                 <nav id="menu" class="navbar navbar-expand-lg navbar-light">
                     <a id="nome" class="navbar-brand" href="#"></a>
