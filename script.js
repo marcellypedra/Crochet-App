@@ -28,7 +28,8 @@ document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTE
         </div>
         <nav class="headermenu">
             <ul class=navlist> 
-            <li class="navitem"><a class="nav-link" href="project.html">My Projects</a></li>
+            <li class="navitem"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="navitem"><a class="nav-link" href="Nproject.html">My Projects</a></li>
             <li class="navitem"><a class="nav-link" href="material.html">My Material list</a></li>
             </ul>
         </nav>
@@ -39,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTE
     const footerHTML = `
         <section class="footer">
             <div>
-                <p>Since ${new Date().getFullYear()} helping you to knit your dreams!</p>
                 <p>&copy; ${new Date().getFullYear()} My Website. All rights reserved.</p>
             </div>
             <div>
@@ -67,14 +67,13 @@ async function loadDropdownFromJSON() {
         const response = await fetch("yarn.json");
         const data = await response.json();
 
-        // Get the dropdown element
+        // Get the datalist element
         const dropdown = document.getElementById("supplies");
 
         // Loop through the JSON data and create options
         data.forEach(item => {
             const option = document.createElement("option");
-            option.value = item.name;
-            option.textContent = item.name;
+            option.value = item.name; // Use 'value' for datalist
             dropdown.appendChild(option);
         });
     } catch (error) {
@@ -87,19 +86,22 @@ document.addEventListener("DOMContentLoaded", loadDropdownFromJSON);
 
 // Function to add selected items to a separate list
 function addtoSelectMaterial() {
-    const dropdown = document.getElementById("supplies");
-    const selectedList = document.getElementById("selectedItemsList");
+    // Get the input field and the list
+    const input = document.getElementById("material");
+    const selectedList = document.getElementById("selectedMaterialList");
 
-    Array.from(dropdown.selectedOptions).forEach(option => {
-        if (!Array.from(selectedList.children).some(li => li.textContent === option.value)) {
-            const listItem = document.createElement("li");
-            listItem.textContent = option.value;
-            selectedList.appendChild(listItem);
-        }
-    });
+    // Add the selected value to the list if it's not already added
+    if (input.value && !Array.from(selectedList.children).some(li => li.textContent === input.value)) {
+        const listItem = document.createElement("li");
+        listItem.textContent = input.value;
+        selectedList.appendChild(listItem);
 
-    dropdown.selectedIndex = -1;
+        // Clear the input field after adding
+        input.value = "";
+    }
 }
+
+
 
 
 

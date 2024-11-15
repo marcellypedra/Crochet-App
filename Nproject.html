@@ -1,48 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-
         <title>Your Yarn.com</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" type="image/x-icon" href="img/yarn.png">
-        
+        <link rel="shortcut icon" type="image/x-icon" href="img/yarnbasket.png">
     </head>
     <body>
-        <section id="showHeader"></section>
-        
-<div class="full-project">
-        <div class="id-project">
-        <form>
-            <label for="Prjname">Project name:</label><br>
-            <input type="text" id="pname" name="pname" maxlength="100"><br>
-            <label for="description">Description:</label><br>
-            <textarea id="descr" name="descr" rows="10" cols="30" ><br><br>
-        </form>
-        </div>
-             <div class="material-list">
-             <label for="material">Choose your supplies:</label><br>
-             <select id="supplies" multiple>
-             </select>
-             <button onclick="addtoSelectMaterial()">Add to Project</button>
-             <h3>Selected Material List</h3>
-             <ul id="selectedMaterialList"></ul>
-             </div>
-             <div class="AddProject">
-             <button onclick="addtoProjectList()">Create Project</button>
+        <section id="showHeader"></section> 
+        <main class="main">
+
+            <div class="full-project">
+                <div class="id-project">
+                    <form>
+                        <label for="pname">Project name:</label><br>
+                        <input type="text" id="pname" name="pname" maxlength="100"><br>
+                        <label for="descr">Description:</label><br>
+                        <textarea id="descr" name="descr" rows="10" cols="30"></textarea><br><br>
+                        <label for="urlpattern">Add Crochet Pattern url:</label><br>
+                        <input type="url" id="urlpattern" name="urlpattern">
+                    </form>
+                </div>
+                <div class="material-list">
+                    <form>
+                        <label for="material">Choose your supplies:</label><br>
+                        <input list="supplies" id="material" name="material">
+                        <datalist id="supplies"></datalist>
+                        <button type="button" onclick="addtoSelectMaterial()">Add to Project</button>
+                        <h3>Selected Material List</h3>
+                        <ul id="selectedMaterialList"></ul>
+                    </form>
+                </div>
+                
+                <div class="AddProject">
+                    <button onclick="addtoProjectList()">Create Project</button>
+                </div>
             </div>
-</div>
-     
-          
-        
-        
-        
-        
-        
+        </main>     
         <section id="showFooter"></section>    
         
         
         
-        <script type="module" src="script.js"></script>    
+        <script type="text/javascript" src="script.js"></script>
+        <style  rel="stylesheet" href="style.css"></style>   
     </body>
 </html>
