@@ -96,10 +96,23 @@ function addtoSelectMaterial() {
         listItem.textContent = input.value;
         selectedList.appendChild(listItem);
 
+        //Create a delete button
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "delete";
+        deleteButton.style.marginLeft = "10px";
+        deleteButton.onclick = function () {
+            selectedList.removeChild(listItem);
+        };
+
+        //Add the delete button to te list item
+        listItem.appendChild(deleteButton);
+
         // Clear the input field after adding
         input.value = "";
     }
 }
+
+
 
 
 
