@@ -112,6 +112,27 @@ function addtoSelectMaterial() {
     }
 }
 
+//Function to save the new Project to a list in My Projects
+
+function addtoProjectList() {
+    const projectName = document.getElementById("pname").value.trim();
+    const porjectDescription = document.getElementById("descr").value.trim();
+    const materialList = Array.from(document.querySelectorAll("selectedMaterialList li span"))
+          .map(span => span.textContent)
+}
+
+//Create a project object
+
+const project = {
+    name: projectName,
+    description: projectDescription,
+    materials: materialList
+};
+
+
+
+        
+
 
 
 
