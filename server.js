@@ -1,23 +1,33 @@
 const express = require('express');
-const fs = require('fs').promises;
+const mysql = require('mysql12');
 const path = require('path');
-
 const app =express();
-const PORT = 3000;
 
-//Middleware
-app.use(express.json()); 
-app.use(express.static(path.join(__dirname, 'Crochet-App'))); //Server for static files
+const PORT = process.env.PORT || 3000;
 
-//file to store project data (simulate a database)
-const DATA_FILE = path.join(__dirname, 'data', 'projects.json');
-fs.mkdir(path.join(__dirname, 'data'), {recursive: true}).catch(console.error);
+//MySQL connection
+const db = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
+});
 
-// API Routes
+db.connect(err => {
+  if (err) {
+      console.error('Error connecting to MySQL:', err);
+      process.exit(1);
+  }
+  console.log('Connected to MySQL');
+});
+
+// // Serve static files (HTML, CSS, JS files)
+app.use(express.static(path.join(__dirname, 'public')));
+
 // GET: Retrieve all ongoing projects
 app.get('/api/projects', async (req, res) => {
-    try {
-      const data = await fs.readFile(DATA_FILE, 'utf-8');
+    db.query 
+    ()      const data = await fs.readFile(DATA_FILE, 'utf-8');
       res.json(JSON.parse(data));
     } catch (error) {
       if (error.code === 'ENOENT') {
