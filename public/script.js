@@ -138,20 +138,22 @@ async function addtoProjectList() {
         url: projectUrlPattern,
         materials: materials
     };
+// Retrieve existing projects or initialize empty array
+    const savedProjects = JSON.parse(localStorage.getItem("ongoingProjects")) || [];
 
-    console.log(project.valueOf());
+// Add the new project
+    savedProjects.push(project);
 
-    localStorage.setItem("ongoingProject", JSON.stringify(project));
+// Save updated list back to localStorage
+    localStorage.setItem("ongoingProjects", JSON.stringify(savedProjects));
 
-    console.log("Saved Project:", project)
-
-    console.log("Retrieved Project:", JSON.parse(localStorage.getItem("ongoing project")));
+    console.log("Saved Projects:", savedProjects);
 
     window.location.href = "Myproject.html";
 
 }
 
-// Load and display the ongoing project
+// Load and display the ongoing projects
 document.addEventListener("DOMContentLoaded", () => {
     const ongoingProjectsContainer = document.getElementById("ongoingProjects");
     const modal = document.getElementById("projectModal");
@@ -167,11 +169,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const projectPictureInput = document.getElementById("projectPicture");
     const modalProjectImage = document.getElementById("modalProjectImage");
 
-    let savedProject = JSON.parse(localStorage.getItem("ongoingProject")) || [];
+    let savedProjects = JSON.parse(localStorage.getItem("ongoingProject")) || [];
     
     function displayProjects() {
+        const ongoingProjectsContainer = document.getElementById("ongoingProjects");
+
+        let savedProjects = JSON.parse(localStorage.getItem("ongoingProjects")) || [];
+
         ongoingProjectsContainer.innerHTML = "";
-        if (savedProject.length === 0) {
+        if (savedProjects.length === 0) {
             ongoingProjectsContainer.textContent = "No ongoing projects.";
         } else {
             savedProjects.forEach((project, index) => {
@@ -187,27 +193,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     
-    // Populate materials dropdown
-    async function loadMaterialsDropdown() {
-        try {
-            const response = await fetch("yarn.json"); // JSON file with materials
-            const materials = await response.json();
-            materialDropdown.innerHTML = `
-                <option value="" disabled selected>Select a material</option>
-            `;
-            materials.forEach((material) => {
-                const option = document.createElement("option");
-                option.value = material.name;
-                option.textContent = material.name;
-                materialDropdown.appendChild(option);
-            });
-        } catch (error) {
-            console.error("Error loading materials:", error);
-        }
-    }
-
     // Open modal and populate fields
-    function openModal(project) {
+    function openModal(project,index) {
         modalProjectName.value = project.name;
         modalProjectDescription.value = project.description;
         modalProjectUrlInput.value = project.url;
@@ -236,9 +223,23 @@ document.addEventListener("DOMContentLoaded", () => {
             modalProjectImage.style.display = "none";
         }
 
+        // Handle image input change
+        projectPictureInput.onchange = (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    modalProjectImage.src = event.target.result;
+                    modalProjectImage.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+
 
         saveChangesButton.onclick = () => saveProject(index);
         modal.style.display = "block";
+
         loadMaterialsDropdown(); // Load materials into dropdown when modal opens
     }
 
@@ -252,6 +253,8 @@ document.addEventListener("DOMContentLoaded", () => {
         
         };
 
+        let savedProjects = JSON.parse(localStorage.getItem("ongoingProjects")) || [];
+
         if (index >= 0) {
             savedProjects[index] = updatedProject; //updated existing project
         }else {
@@ -259,11 +262,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         localStorage.setItem("ongoingProjects", JSON.stringify(savedProjects));
+        
         displayProjects();
 
         modal.style.display = "none";
     }
-
 
     // Add material from dropdown
     addMaterialButton.onclick = () => {
@@ -289,74 +292,29 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.style.display = "none";
     };
 
-    // Save changes to localStorage
-    saveChangesButton.onclick = () => {
-        const updatedProject = {
-            name: modalProjectName.value.trim(),
-            description: modalProjectDescription.value.trim(),
-            url: modalProjectUrlInput.value.trim(),
-            materials: Array.from(modalProjectMaterials.children).map((li) =>
-                li.firstChild ? li.firstChild.textContent.trim() : ""
-            ),
-        };
-
-        // Save image if uploaded
-        const file = projectPictureInput.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = () => {
-                updatedProject.image = reader.result;
-                saveProject(updatedProject);
-            };
-            reader.readAsDataURL(file);
-        } else if (savedProject.image) {
-            updatedProject.image = savedProject.image;
-            saveProject(updatedProject);
-        }else {
-            saveProject(updatedProject);
+    // Populate materials dropdown
+    async function loadMaterialsDropdown() {
+        try {
+            const response = await fetch("yarn.json"); // JSON file with materials
+            const materials = await response.json();
+            materialDropdown.innerHTML = `
+                <option value="" disabled selected>Select a material</option>
+            `;
+            materials.forEach((material) => {
+                const option = document.createElement("option");
+                option.value = material.name;
+                option.textContent = material.name;
+                materialDropdown.appendChild(option);
+            });
+        } catch (error) {
+            console.error("Error loading materials:", error);
         }
-    };
-
-    function saveProject(project) {
-        localStorage.setItem("ongoingProject", JSON.stringify(project));
-        alert("Project updated successfully!");
-
-        updateOngoingProjectsDisplay();
-
-        modal.style.display = "none";
     }
 
-    // Function to update the ongoing projects section dynamically
-function updateOngoingProjectsDisplay() {
-    const ongoingProjectsContainer = document.getElementById("ongoingProjects");
-    ongoingProjectsContainer.innerHTML = ""; // Clear existing content
-
-    const savedProject = JSON.parse(localStorage.getItem("ongoingProject"));
-    if (savedProject) {
-        const projectLink = document.createElement("a");
-        projectLink.textContent = savedProject.name;
-        projectLink.href = "#";
-        projectLink.onclick = (e) => {
-            e.preventDefault();
-            openModal(savedProject); // Reopen modal if clicked
-        };
-        ongoingProjectsContainer.appendChild(projectLink);
-    } else {
-        ongoingProjectsContainer.textContent = "No ongoing projects.";
-    }
-}
-
-    // Close modal
-    closeModalButton.onclick = () => {
-        modal.style.display = "none";
-    };
-    window.onclick = (event) => {
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
-    };
+    displayProjects();
 });
 
+   
 
 
     
