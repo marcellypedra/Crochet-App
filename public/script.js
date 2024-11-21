@@ -7,7 +7,10 @@
         "user.html": {
             title: "Your Yarn.com"
         },
-        "Nproject.html": {
+        "Newproject.html": {
+            title: "Your Yarn.com projects",
+        },
+        "Myproject.html": {
             title: "Your Yarn.com projects",
         }
     };
@@ -29,8 +32,8 @@ document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTE
         <nav class="headermenu">
             <ul class=navlist> 
             <li class="navitem"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="navitem"><a class="nav-link" href="Nproject.html">My Projects</a></li>
-            <li class="navitem"><a class="nav-link" href="material.html">My Material list</a></li>
+            <li class="navitem"><a class="nav-link" href="Newproject.html">Create New Project</a></li>
+            <li class="navitem"><a class="nav-link" href="Myproject.html">My Projects</a></li>
             </ul>
         </nav>
 </div>
@@ -57,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTE
     if (footerContainer) footerContainer.innerHTML = footerHTML;
 });
 
+//Navigate to a page
 function openPage(pageName) {
     window.location.href = pageName;
 }
@@ -66,8 +70,6 @@ async function loadDropdownFromJSON() {
         // Fetch the JSON file
         const response = await fetch("yarn.json");
         const data = await response.json();
-
-        // Get the datalist element
         const dropdown = document.getElementById("supplies");
 
         // Loop through the JSON data and create options
@@ -86,7 +88,6 @@ document.addEventListener("DOMContentLoaded", loadDropdownFromJSON);
 
 // Function to add selected items to a separate list
 function addtoSelectMaterial() {
-    // Get the input field and the list
     const input = document.getElementById("material");
     const selectedList = document.getElementById("selectedMaterialList");
 
@@ -109,25 +110,40 @@ function addtoSelectMaterial() {
 
         // Clear the input field after adding
         input.value = "";
+
     }
 }
 
-//Function to save the new Project to a list in My Projects
-
-function addtoProjectList() {
+// Create and save the project
+async function addtoProjectList() {
     const projectName = document.getElementById("pname").value.trim();
-    const porjectDescription = document.getElementById("descr").value.trim();
-    const materialList = Array.from(document.querySelectorAll("selectedMaterialList li span"))
-          .map(span => span.textContent)
+    const projectDescription = document.getElementById("descr").value.trim();
+    const projectUrlPattern = document.getElementById("urlpattern").value.trim();
+
+    const materials = Array.from(document.querySelectorAll("#selectedMaterialList li"))
+        .map(li => li.textContent.replace("Remove", "").trim());
+
+    if (!projectName) {
+        alert("Please enter a project name.");
+        return;
+    }
+
+    const project = {
+        name: projectName,
+        description: projectDescription,
+        url: projectUrlPattern,
+        materials: materials
+    };
+
+    console.log(project.valueOf());
+
+    
 }
 
-//Create a project object
+    
 
-const project = {
-    name: projectName,
-    description: projectDescription,
-    materials: materialList
-};
+
+
 
 
 
