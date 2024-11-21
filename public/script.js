@@ -167,21 +167,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const projectPictureInput = document.getElementById("projectPicture");
     const modalProjectImage = document.getElementById("modalProjectImage");
 
-    let savedProject = JSON.parse(localStorage.getItem("ongoingProject"));
-
-    if (savedProject) {
-        const projectLink = document.createElement("a");
-        projectLink.textContent = savedProject.name;
-        projectLink.href = "#";
-        projectLink.onclick = (e) => {
-            e.preventDefault();
-            openModal(savedProject);
-        };
-        ongoingProjectsContainer.appendChild(projectLink);
-    } else {
-        ongoingProjectsContainer.textContent = "No ongoing projects.";
+    let savedProject = JSON.parse(localStorage.getItem("ongoingProject")) || [];
+    
+    function displayProjects() {
+        ongoingProjectsContainer.innerHTML = "";
+        if (savedProject.length === 0) {
+            ongoingProjectsContainer.textContent = "No ongoing projects.";
+        } else {
+            savedProjects.forEach((project, index) => {
+                const projectLink = document.createElement("a");
+                projectLink.textContent = project.name;
+                projectLink.href = "#";
+                projectLink.onclick = (e) => {
+                    e.preventDefault();
+                    openModal(project, index);
+                };
+                ongoingProjectsContainer.appendChild(projectLink);
+            });
+        }
     }
-
+    
     // Populate materials dropdown
     async function loadMaterialsDropdown() {
         try {
@@ -231,9 +236,34 @@ document.addEventListener("DOMContentLoaded", () => {
             modalProjectImage.style.display = "none";
         }
 
+
+        saveChangesButton.onclick = () => saveProject(index);
         modal.style.display = "block";
         loadMaterialsDropdown(); // Load materials into dropdown when modal opens
     }
+
+    function saveProject(index) {
+        const updatedProject = {
+            name: modalProjectName.value,
+            description: modalProjectDescription.value,
+            url: modalProjectUrlInput.value,
+            materials: Array.from(modalProjectMaterials.children).map((li) => li.firstChild.textContent),
+            image: modalProjectImage.src || null,
+        
+        };
+
+        if (index >= 0) {
+            savedProjects[index] = updatedProject; //updated existing project
+        }else {
+            savedProjects.push(updatedProject); //Add new project
+        }
+
+        localStorage.setItem("ongoingProjects", JSON.stringify(savedProjects));
+        displayProjects();
+
+        modal.style.display = "none";
+    }
+
 
     // Add material from dropdown
     addMaterialButton.onclick = () => {
@@ -253,6 +283,10 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             alert("Please select a material to add.");
         }
+    };
+
+    closeModalButton.onclick = () => {
+        modal.style.display = "none";
     };
 
     // Save changes to localStorage
