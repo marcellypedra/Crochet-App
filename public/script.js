@@ -58,12 +58,18 @@ document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTE
 
     const footerContainer = document.getElementById("showFooter");
     if (footerContainer) footerContainer.innerHTML = footerHTML;
+
+     // Load dropdown and display projects
+     loadDropdownFromJSON();
+     displayProjects();
 });
 
 //Navigate to a page
 function openPage(pageName) {
     window.location.href = pageName;
 }
+
+
 // Fetch data from the JSON file and populate the dropdown
 async function loadDropdownFromJSON() {
     try {
@@ -83,8 +89,63 @@ async function loadDropdownFromJSON() {
     }
 }
 
-// Call the function to load the dropdown on page load
-document.addEventListener("DOMContentLoaded", loadDropdownFromJSON);
+function displayProjects() {
+    const ongoingContainer = document.getElementById("ongoingProjects");
+    const closedContainer = document.getElementById("closedProjects");
+    const ongoingProjects = JSON.parse(localStorage.getItem("ongoingProjects")) || [];
+    const closedProjects = JSON.parse(localStorage.getItem("closedProjects")) || [];
+
+    // Clear existing content
+    if (ongoingContainer) ongoingContainer.innerHTML = "";
+    if (closedContainer) closedContainer.innerHTML = "";
+
+    // Populate ongoing projects
+    ongoingProjects.forEach((project, index) => {
+        const projectLink = document.createElement("a");
+        projectLink.textContent = project.name;
+        projectLink.href = "#";
+        projectLink.className = "project-link";
+        projectLink.onclick = () => openModal(project, index, "ongoing");
+        ongoingContainer.appendChild(projectLink);
+    });
+
+    // Populate closed projects
+    closedProjects.forEach((project, index) => {
+        const projectLink = document.createElement("a");
+        projectLink.textContent = project.name;
+        projectLink.href = "#";
+        projectLink.className = "project-link";
+        projectLink.onclick = () => openModal(project, index, "closed");
+        closedContainer.appendChild(projectLink);
+    });
+}
+
+function addtoProjectList() {
+    const projectName = document.getElementById("pname").value.trim();
+    const projectDescription = document.getElementById("descr").value.trim();
+    const projectUrl = document.getElementById("urlpattern").value.trim();
+
+    const materials = Array.from(document.querySelectorAll("#selectedMaterialList li"))
+        .map((li) => li.firstChild.textContent.trim())
+        .filter((material) => material !== "");
+
+    if (!projectName) {
+        alert("Please enter a project name.");
+        return;
+    }
+
+    const project = { name: projectName, description: projectDescription, url: projectUrl, materials };
+
+    // Save to ongoing projects
+    const ongoingProjects = JSON.parse(localStorage.getItem("ongoingProjects")) || [];
+    ongoingProjects.push(project);
+    localStorage.setItem("ongoingProjects", JSON.stringify(ongoingProjects));
+
+    console.log("Saved Projects:", ongoingProjects);
+
+    // Redirect to My Projects page
+    window.location.href = "Myproject.html";
+}
 
 // Function to add selected items to a separate list
 function addtoSelectMaterial() {
@@ -114,44 +175,7 @@ function addtoSelectMaterial() {
     }
 }
 
-// Create and save the project
-async function addtoProjectList() {
-    const projectName = document.getElementById("pname").value.trim();
-    const projectDescription = document.getElementById("descr").value.trim();
-    const projectUrlPattern = document.getElementById("urlpattern").value.trim();
 
-    const materials = Array.from(document.querySelectorAll("#selectedMaterialList li"))
-    .map(li => {
-        const mainTextNode = li.firstChild; // Get the first text node
-        return mainTextNode ? mainTextNode.textContent.trim() : "";
-    })
-    .filter(material => material !== ""); // Ensure no empty entries
-
-    if (!projectName) {
-        alert("Please enter a project name.");
-        return;
-    }
-
-    const project = {
-        name: projectName,
-        description: projectDescription,
-        url: projectUrlPattern,
-        materials: materials
-    };
-// Retrieve existing projects or initialize empty array
-    const savedProjects = JSON.parse(localStorage.getItem("ongoingProjects")) || [];
-
-// Add the new project
-    savedProjects.push(project);
-
-// Save updated list back to localStorage
-    localStorage.setItem("ongoingProjects", JSON.stringify(savedProjects));
-
-    console.log("Saved Projects:", savedProjects);
-
-    window.location.href = "Myproject.html";
-
-}
 
 
     
