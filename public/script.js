@@ -137,7 +137,13 @@ async function addtoProjectList() {
 
     console.log(project.valueOf());
 
-    
+    localStorage.setItem("ongoingProject", JSON.stringify(project));
+
+    console.log("Saved Project:", project)
+
+    console.log("Retrieved Project:", JSON.parse(localStorage.getItem("ongoing project")));
+
+    window.location.href = "Myproject.html";
 }
 
     
