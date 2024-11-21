@@ -279,7 +279,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updatedProject.image = savedProject.image;
             saveProject(updatedProject);
         }else {
-            saveProject(updatedPorject);
+            saveProject(updatedProject);
         }
     };
 
