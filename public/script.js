@@ -159,60 +159,143 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const modalProjectName = document.getElementById("modalProjectName");
     const modalProjectDescription = document.getElementById("modalProjectDescription");
-    const modalProjectUrl = document.getElementById("modalProjectUrl");
+    const modalProjectUrlInput = document.getElementById("modalProjectUrlInput");
     const modalProjectMaterials = document.getElementById("modalProjectMaterials");
+    const materialDropdown = document.getElementById("materialDropdown");
+    const addMaterialButton = document.getElementById("addMaterialButton");
+    const saveChangesButton = document.getElementById("saveChangesButton");
+    const projectPictureInput = document.getElementById("projectPicture");
+    const modalProjectImage = document.getElementById("modalProjectImage");
 
-    if (!ongoingProjectsContainer || !modal) {
-        console.error("Error: Required elements not found in the DOM.");
-        return;
-    }
-
-    const savedProject = JSON.parse(localStorage.getItem("ongoingProject"));
+    let savedProject = JSON.parse(localStorage.getItem("ongoingProject"));
 
     if (savedProject) {
-        // Create a link for the project name
         const projectLink = document.createElement("a");
         projectLink.textContent = savedProject.name;
         projectLink.href = "#";
         projectLink.onclick = (e) => {
             e.preventDefault();
-
-            // Populate modal content
-            modalProjectName.textContent = savedProject.name;
-            modalProjectDescription.textContent = savedProject.description;
-            modalProjectUrl.textContent = savedProject.url;
-            modalProjectUrl.href = savedProject.url;
-
-            // Populate materials list
-            modalProjectMaterials.innerHTML = "";
-            savedProject.materials.forEach((material) => {
-                const listItem = document.createElement("li");
-                listItem.textContent = material;
-                modalProjectMaterials.appendChild(listItem);
-            });
-
-            // Show the modal
-            modal.style.display = "block";
+            openModal(savedProject);
         };
-
         ongoingProjectsContainer.appendChild(projectLink);
     } else {
         ongoingProjectsContainer.textContent = "No ongoing projects.";
     }
 
-    // Close the modal when the close button is clicked
+    // Populate materials dropdown
+    async function loadMaterialsDropdown() {
+        try {
+            const response = await fetch("yarn.json"); // JSON file with materials
+            const materials = await response.json();
+            materialDropdown.innerHTML = `
+                <option value="" disabled selected>Select a material</option>
+            `;
+            materials.forEach((material) => {
+                const option = document.createElement("option");
+                option.value = material.name;
+                option.textContent = material.name;
+                materialDropdown.appendChild(option);
+            });
+        } catch (error) {
+            console.error("Error loading materials:", error);
+        }
+    }
+
+    // Open modal and populate fields
+    function openModal(project) {
+        modalProjectName.value = project.name;
+        modalProjectDescription.value = project.description;
+        modalProjectUrlInput.value = project.url;
+
+        modalProjectMaterials.innerHTML = "";
+        project.materials.forEach((material) => {
+            const listItem = document.createElement("li");
+            listItem.textContent = material;
+
+            // Add a delete button
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Remove";
+            deleteButton.onclick = () => {
+                modalProjectMaterials.removeChild(listItem);
+            };
+            listItem.appendChild(deleteButton);
+
+            modalProjectMaterials.appendChild(listItem);
+        });
+
+        // Display project image if exists
+        if (project.image) {
+            modalProjectImage.src = project.image;
+            modalProjectImage.style.display = "block";
+        } else {
+            modalProjectImage.style.display = "none";
+        }
+
+        modal.style.display = "block";
+        loadMaterialsDropdown(); // Load materials into dropdown when modal opens
+    }
+
+    // Add material from dropdown
+    addMaterialButton.onclick = () => {
+        const selectedMaterial = materialDropdown.value;
+        if (selectedMaterial) {
+            const listItem = document.createElement("li");
+            listItem.textContent = selectedMaterial;
+
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Remove";
+            deleteButton.onclick = () => {
+                modalProjectMaterials.removeChild(listItem);
+            };
+            listItem.appendChild(deleteButton);
+
+            modalProjectMaterials.appendChild(listItem);
+        } else {
+            alert("Please select a material to add.");
+        }
+    };
+
+    // Save changes to localStorage
+    saveChangesButton.onclick = () => {
+        const updatedProject = {
+            name: modalProjectName.value.trim(),
+            description: modalProjectDescription.value.trim(),
+            url: modalProjectUrlInput.value.trim(),
+            materials: Array.from(modalProjectMaterials.children).map((li) =>
+                li.firstChild ? li.firstChild.textContent.trim() : ""
+            ),
+        };
+
+        // Save image if uploaded
+        const file = projectPictureInput.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                updatedProject.image = reader.result;
+                saveProject(updatedProject);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            saveProject(updatedProject);
+        }
+    };
+
+    function saveProject(project) {
+        localStorage.setItem("ongoingProject", JSON.stringify(project));
+        alert("Project updated successfully!");
+        modal.style.display = "none";
+    }
+
+    // Close modal
     closeModalButton.onclick = () => {
         modal.style.display = "none";
     };
-
-    // Close the modal when clicking outside of it
     window.onclick = (event) => {
         if (event.target === modal) {
             modal.style.display = "none";
         }
     };
 });
-
 
 
 

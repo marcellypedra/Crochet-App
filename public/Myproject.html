@@ -20,12 +20,35 @@
         <div id="projectModal" class="modal">
             <div class="modal-content">
                 <span class="close-button">&times;</span>
-                <h3 id="modalProjectName"></h3>
-                <p id="modalProjectDescription"></p>
-                <a id="modalProjectUrl" href="#" target="_blank"></a>
+                <h3>
+                   <input id="modalProjectName" type="text" value="" placeholder="Project Name" />
+                </h3>
+                <textarea id="modalProjectDescription" placeholder="Project Description"></textarea>
+                <p>
+                    <label for="modalProjectUrlInput">Porject URL:</label>
+                    <input id="modalProjectUrlInput" type="text" value="" />
+                </p>
+
                 <ul id="modalProjectMaterials"></ul>
+                <div>
+                    <label for="materialDropdown">Select Material:</label>
+                    <select id="materialDropdown">
+                        <option value="" disabled selected>Select a material</option>
+                    </select>
+                    <button id="addMaterialButton">Add Material</button>
+                </div>
+        
+                <p>
+                    <label for="projectPicture">Add/Change Picture:</label>
+                    <input type="file" id="projectPicture" accept="image/*" />
+                </p>
+                <img id="modalProjectImage" src="#" alt="Project Image" style="max-width: 100%; display: none;" />
+        
+                <button id="saveChangesButton">Save Changes</button>
             </div>
         </div>
+
+        
     </section>
         
         <section>
