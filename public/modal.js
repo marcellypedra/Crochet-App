@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("projectModal");
+    if (modal) {
+        modal.style.display = "none";
+    }
     const closeButton = modal?.querySelector(".close-button");
     const saveChangesButton = document.getElementById("saveChangesButton");
     const deleteProjectButton = document.getElementById("deleteProjectButton");
@@ -14,8 +17,10 @@ document.addEventListener("DOMContentLoaded", function () {
 // Function to open the modal
 function openModal(project, index, category) {
     const modal = document.getElementById("projectModal");
-    if (!modal) return;
-
+    if (!modal) {
+        console.error("Modal element not found")
+        return;
+    }
     // Populate modal fields with project data
     document.getElementById("modalProjectName").value = project.name || "";
     document.getElementById("modalProjectDescription").value = project.description || "";
