@@ -275,16 +275,42 @@ document.addEventListener("DOMContentLoaded", () => {
                 saveProject(updatedProject);
             };
             reader.readAsDataURL(file);
-        } else {
+        } else if (savedProject.image) {
+            updatedProject.image = savedProject.image;
             saveProject(updatedProject);
+        }else {
+            saveProject(updatedPorject);
         }
     };
 
     function saveProject(project) {
         localStorage.setItem("ongoingProject", JSON.stringify(project));
         alert("Project updated successfully!");
+
+        updateOngoingProjectsDisplay();
+
         modal.style.display = "none";
     }
+
+    // Function to update the ongoing projects section dynamically
+function updateOngoingProjectsDisplay() {
+    const ongoingProjectsContainer = document.getElementById("ongoingProjects");
+    ongoingProjectsContainer.innerHTML = ""; // Clear existing content
+
+    const savedProject = JSON.parse(localStorage.getItem("ongoingProject"));
+    if (savedProject) {
+        const projectLink = document.createElement("a");
+        projectLink.textContent = savedProject.name;
+        projectLink.href = "#";
+        projectLink.onclick = (e) => {
+            e.preventDefault();
+            openModal(savedProject); // Reopen modal if clicked
+        };
+        ongoingProjectsContainer.appendChild(projectLink);
+    } else {
+        ongoingProjectsContainer.textContent = "No ongoing projects.";
+    }
+}
 
     // Close modal
     closeModalButton.onclick = () => {
