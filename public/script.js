@@ -121,7 +121,11 @@ async function addtoProjectList() {
     const projectUrlPattern = document.getElementById("urlpattern").value.trim();
 
     const materials = Array.from(document.querySelectorAll("#selectedMaterialList li"))
-        .map(li => li.textContent.replace("Remove", "").trim());
+    .map(li => {
+        const mainTextNode = li.firstChild; // Get the first text node
+        return mainTextNode ? mainTextNode.textContent.trim() : "";
+    })
+    .filter(material => material !== ""); // Ensure no empty entries
 
     if (!projectName) {
         alert("Please enter a project name.");
@@ -144,7 +148,42 @@ async function addtoProjectList() {
     console.log("Retrieved Project:", JSON.parse(localStorage.getItem("ongoing project")));
 
     window.location.href = "Myproject.html";
+
 }
+
+// Load and display the ongoing project
+document.addEventListener("DOMContentLoaded", () => {
+    const ongoingProjectsContainer = document.getElementById("ongoingProjects");
+
+    if (!ongoingProjectsContainer) {
+        console.error("Error: #ongoingProjects element not found in the DOM.");
+        return;
+    }
+    
+    const savedProject = JSON.parse(localStorage.getItem("ongoingProject"));
+
+    if (savedProject) {
+        const projectDiv = document.createElement("div");
+        projectDiv.classList.add("project");
+
+        // Populate the project details
+        projectDiv.innerHTML = `
+            <h3>Project Name: ${savedProject.name}</h3>
+            <p>Description: ${savedProject.description}</p>
+            <p>Pattern:
+            <a href=${savedProject.url}" target="_blank">${savedProject.url}</a><p/>
+            <p>Materials List:</p>
+            <ul> 
+                ${savedProject.materials.map(material => `<li>${material}</li>`).join("")}
+            </ul>
+        `;
+
+        ongoingProjectsContainer.appendChild(projectDiv);
+    }
+});
+
+
+
 
     
 
