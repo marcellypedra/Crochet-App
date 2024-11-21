@@ -75,14 +75,14 @@ function openModal(project,index, projectType) {
 
 
         // Add a delete button
-    if (projectType === "ongoing") {
-        const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Remove";
-        deleteButton.onclick = () => {
+        if (projectType === "ongoing") {
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Remove";
+            deleteButton.onclick = () => {
             modalProjectMaterials.removeChild(listItem);
-        };
-        listItem.appendChild(deleteButton);
-    }
+            };
+            listItem.appendChild(deleteButton);
+        }
 
         modalProjectMaterials.appendChild(listItem);
     });
@@ -111,51 +111,50 @@ function openModal(project,index, projectType) {
    // Configure Buttons
     if (projectType === "ongoing") {
     // Enable editing and show action buttons
-    enableModalInputs();
-    markAsClosedButton.style.display = "block";
-    deleteProjectButton.style.display = "block";
+       enableModalInputs();
+       markAsClosedButton.style.display = "block";
+       deleteProjectButton.style.display = "block";
 
-    saveChangesButton.onclick = () => saveProject(index);
-    markAsClosedButton.onclick = () => markAsClosed(index);
-    deleteProjectButton.onclick = () => deleteProject(index, "ongoing");
+       saveChangesButton.onclick = () => saveProject(index);
+       markAsClosedButton.onclick = () => markAsClosed(index);
+       deleteProjectButton.onclick = () => deleteProject(index, "ongoing");
     } else if (projectType === "closed") {
     //disable editign and hide buttons
 
-    disableModalInputs();
-    markAsClosedButton.style.display = "none";
-    deleteProjectButton.style.display = "block";
+      disableModalInputs();
+      markAsClosedButton.style.display = "none";
+      deleteProjectButton.style.display = "block";
 
-    deleteProjectButton.onclick = () => deleteProject(index, "closed");
-
+      deleteProjectButton.onclick = () => deleteProject(index, "closed");
     }
-
-     // Add material from dropdown
-    addMaterialButton.onclick = () => {
-    const selectedMaterial = materialDropdown.value;
-    if (selectedMaterial) {
-        const listItem = document.createElement("li");
-        listItem.textContent = selectedMaterial;
-
-        const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Remove";
-        deleteButton.onclick = () => {
-            modalProjectMaterials.removeChild(listItem);
-        };
-        listItem.appendChild(deleteButton);
-
-        modalProjectMaterials.appendChild(listItem);
-    } else {
-        alert("Please select a material to add.");
-    }
-};
-
-closeModalButton.onclick = () => {
-    modal.style.display = "none";
-};
 
     modal.style.display = "block";
 
-    loadMaterialsDropdown(); // Load materials into dropdown when modal opens
+    // Load materials into dropdown when modal opens
+    loadMaterialsDropdown();
+
+    
+
+     // Add material from dropdown
+    addMaterialButton.onclick = () => {
+        const selectedMaterial = materialDropdown.value;
+        if (selectedMaterial) {
+            const listItem = document.createElement("li");
+            listItem.textContent = selectedMaterial;
+
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Remove";
+            deleteButton.onclick = () => {
+                modalProjectMaterials.removeChild(listItem);
+            };
+            listItem.appendChild(deleteButton);
+
+            modalProjectMaterials.appendChild(listItem);
+        } else {
+        alert("Please select a material to add.");
+        }
+    };
+
 }
 
 function saveProject(index) {
@@ -203,8 +202,6 @@ function deleteProject(index, projectType) {
     displayProjects();
     modal.style.display = "none";
 }
-
-//Enable Modal Inputs
 
 // Enable Modal Inputs
 function enableModalInputs() {
