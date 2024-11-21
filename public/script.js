@@ -154,32 +154,63 @@ async function addtoProjectList() {
 // Load and display the ongoing project
 document.addEventListener("DOMContentLoaded", () => {
     const ongoingProjectsContainer = document.getElementById("ongoingProjects");
+    const modal = document.getElementById("projectModal");
+    const closeModalButton = modal.querySelector(".close-button");
 
-    if (!ongoingProjectsContainer) {
-        console.error("Error: #ongoingProjects element not found in the DOM.");
+    const modalProjectName = document.getElementById("modalProjectName");
+    const modalProjectDescription = document.getElementById("modalProjectDescription");
+    const modalProjectUrl = document.getElementById("modalProjectUrl");
+    const modalProjectMaterials = document.getElementById("modalProjectMaterials");
+
+    if (!ongoingProjectsContainer || !modal) {
+        console.error("Error: Required elements not found in the DOM.");
         return;
     }
-    
+
     const savedProject = JSON.parse(localStorage.getItem("ongoingProject"));
 
     if (savedProject) {
-        const projectDiv = document.createElement("div");
-        projectDiv.classList.add("project");
+        // Create a link for the project name
+        const projectLink = document.createElement("a");
+        projectLink.textContent = savedProject.name;
+        projectLink.href = "#";
+        projectLink.onclick = (e) => {
+            e.preventDefault();
 
-        // Populate the project details
-        projectDiv.innerHTML = `
-            <h3>Project Name: ${savedProject.name}</h3>
-            <p>Description: ${savedProject.description}</p>
-            <p>Pattern:
-            <a href=${savedProject.url}" target="_blank">${savedProject.url}</a><p/>
-            <p>Materials List:</p>
-            <ul> 
-                ${savedProject.materials.map(material => `<li>${material}</li>`).join("")}
-            </ul>
-        `;
+            // Populate modal content
+            modalProjectName.textContent = savedProject.name;
+            modalProjectDescription.textContent = savedProject.description;
+            modalProjectUrl.textContent = savedProject.url;
+            modalProjectUrl.href = savedProject.url;
 
-        ongoingProjectsContainer.appendChild(projectDiv);
+            // Populate materials list
+            modalProjectMaterials.innerHTML = "";
+            savedProject.materials.forEach((material) => {
+                const listItem = document.createElement("li");
+                listItem.textContent = material;
+                modalProjectMaterials.appendChild(listItem);
+            });
+
+            // Show the modal
+            modal.style.display = "block";
+        };
+
+        ongoingProjectsContainer.appendChild(projectLink);
+    } else {
+        ongoingProjectsContainer.textContent = "No ongoing projects.";
     }
+
+    // Close the modal when the close button is clicked
+    closeModalButton.onclick = () => {
+        modal.style.display = "none";
+    };
+
+    // Close the modal when clicking outside of it
+    window.onclick = (event) => {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    };
 });
 
 
