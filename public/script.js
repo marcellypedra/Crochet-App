@@ -166,11 +166,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const materialDropdown = document.getElementById("materialDropdown");
     const addMaterialButton = document.getElementById("addMaterialButton");
     const saveChangesButton = document.getElementById("saveChangesButton");
+    const markAsClosedButton = document.getElementById("markAsClosedButton");
+    const deleteProjectButton = document.getElementById("deleteProjectButton");
     const projectPictureInput = document.getElementById("projectPicture");
     const modalProjectImage = document.getElementById("modalProjectImage");
 
     let savedProjects = JSON.parse(localStorage.getItem("ongoingProject")) || [];
-    
+    let closedProjects = JSON.parse(localStorage.getItem("closedProjects")) || [];
+
     function displayProjects() {
         const ongoingProjectsContainer = document.getElementById("ongoingProjects");
 
@@ -191,7 +194,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 ongoingProjectsContainer.appendChild(projectLink);
             });
         }
+
+        // Display Closed Projects
+        closedProjectsContainer.innerHTML = "";
+        if (closedProjects.length === 0) {
+            closedProjectsContainer.textContent = "No closed projects.";
+        } else {
+            closedProjects.forEach((project, index) => {
+                const projectLink = document.createElement("a");
+                projectLink.textContent = project.name;
+                projectLink.href = "#";
+                projectLink.onclick = (e) => {
+                    e.preventDefault();
+                    openModal(project, index, "closed");
+                };
+                closedProjectsContainer.appendChild(projectLink);
+            });
+        }
     }
+    
     
     // Open modal and populate fields
     function openModal(project,index) {
@@ -236,8 +257,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         };
 
-
+       // Configure Buttons
         saveChangesButton.onclick = () => saveProject(index);
+        markAsClosedButton.onclick = () => markAsClosed(index);
+        deleteProjectButton.onclick = () => deleteProject(index, projectType);
+
         modal.style.display = "block";
 
         loadMaterialsDropdown(); // Load materials into dropdown when modal opens
@@ -262,9 +286,30 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         localStorage.setItem("ongoingProjects", JSON.stringify(savedProjects));
-        
+
         displayProjects();
 
+        modal.style.display = "none";
+    }
+
+    function markAsClosed(index) {
+        const projectToClose = savedProjects.splice(index, 1)[0]; // Remove from ongoing
+        closedProjects.push(projectToClose); // Add to closed
+        localStorage.setItem("ongoingProjects", JSON.stringify(savedProjects));
+        localStorage.setItem("closedProjects", JSON.stringify(closedProjects));
+        displayProjects();
+        modal.style.display = "none";
+    }
+
+    function deleteProject(index, projectType) {
+        if (projectType === "ongoing") {
+            savedProjects.splice(index, 1); // Remove from ongoing
+            localStorage.setItem("ongoingProjects", JSON.stringify(savedProjects));
+        } else if (projectType === "closed") {
+            closedProjects.splice(index, 1); // Remove from closed
+            localStorage.setItem("closedProjects", JSON.stringify(closedProjects));
+        }
+        displayProjects();
         modal.style.display = "none";
     }
 
