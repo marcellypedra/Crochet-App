@@ -124,7 +124,7 @@ function addtoProjectList() {
     const projectName = document.getElementById("pname").value.trim();
     const projectDescription = document.getElementById("descr").value.trim();
     const projectUrl = document.getElementById("urlpattern").value.trim();
-
+    const projectType = "ongoing" // default
     const materials = Array.from(document.querySelectorAll("#selectedMaterialList li"))
         .map((li) => li.firstChild.textContent.trim())
         .filter((material) => material !== "");
@@ -134,7 +134,7 @@ function addtoProjectList() {
         return;
     }
 
-    const project = { name: projectName, description: projectDescription, url: projectUrl, materials };
+    const project = { name: projectName, description: projectDescription, url: projectUrl, projectType, materials };
 
     // Save to ongoing projects
     const ongoingProjects = JSON.parse(localStorage.getItem("ongoingProjects")) || [];
@@ -149,7 +149,7 @@ function addtoProjectList() {
 
 // Function to add selected items to a separate list
 function addtoSelectMaterial() {
-    const input = document.getElementById("material");
+    const input = document.getElementById("supplies");
     const selectedList = document.getElementById("selectedMaterialList");
 
     // Add the selected value to the list if it's not already added

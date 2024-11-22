@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Function to open the modal
-function openModal(project, index, category) {
+function openModal(project, index, projectType) {
     const modal = document.getElementById("projectModal");
     if (!modal) {
         console.error("Modal element not found")
@@ -29,20 +29,92 @@ function openModal(project, index, category) {
     // Populate materials list
     const materialsList = document.getElementById("modalProjectMaterials");
     materialsList.innerHTML = ""; // Clear previous materials
-    if (project.materials) {
+    if (project.materials && project.materials.length > 0) {
+        // Populate the material list
         project.materials.forEach((material) => {
-            const li = document.createElement("li");
-            li.textContent = material;
-            materialsList.appendChild(li);
+            const listItem = document.createElement("li");
+            listItem.textContent = material;
+
+            const deleteButton = document.createElement("button");
+                deleteButton.textContent = "Remove";
+                deleteButton.onclick = () => {
+                    materialsList.removeChild(listItem);
+                };
+                listItem.appendChild(deleteButton);
+                materialsList.appendChild(listItem);
         });
     }
 
+    // Show the project image if available
+      const modalProjectImage = document.getElementById("modalProjectImage");
+      if (project.image) {
+          modalProjectImage.src = project.image;
+          modalProjectImage.style.display = "block";
+      } else {
+          modalProjectImage.style.display = "none";
+      }
+
     // Store project index and category in the modal for later use
     modal.dataset.index = index;
-    modal.dataset.category = category;
+    modal.dataset.projectType = projectType;
 
     // Show the modal
     modal.style.display = "block";
+
+    loadDropdownFromJSON();
+
+      // Add material from dropdown
+     document.getElementById("addMaterialButton").onclick = () => {
+        const selectedMaterial = document.getElementById("supplies").value;
+        if (selectedMaterial) {
+            const listItem = document.createElement("li");
+            listItem.textContent = selectedMaterial;
+
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Remove";
+            deleteButton.onclick = () => {
+                materialsList.removeChild(listItem);
+            };
+            listItem.appendChild(deleteButton);
+
+            materialsList.appendChild(listItem);
+        } else {
+            alert("Please select a material to add.");
+        } 
+    };
+
+
+
+    // Handle buttons based on project type
+    if (projectType === "ongoing") {
+        // Enable editing
+        enableModalInputs();
+        document.getElementById("markAsClosedButton").style.display = "block";
+        document.getElementById("deleteProjectButton").style.display = "block";
+    } else if (projectType === "closed"){
+        // Disable editing
+        disableModalInputs();
+        document.getElementById("saveChangesButton").style.display = "none";
+        document.getElementById("markAsClosedButton").style.display = "none";
+        document.getElementById("deleteProjectButton").style.display = "block";
+    }
+
+}
+
+function enableModalInputs() {
+    const inputs = document.querySelectorAll("#ProjectModal input, #ProjectModal textarea");
+    inputs.forEach(input => {
+        input.disabled = false;
+        input.readOnly = false;
+    });
+}
+
+function disableModalInputs() {
+    const inputs = document.querySelectorAll("#ProjectModal input, #ProjectModal textarea");
+    inputs.forEach(input => {
+        input.disabled = true;
+        input.readOnly = true;
+    });
 }
 
 // Function to close the modal
@@ -57,14 +129,15 @@ function saveChanges() {
     if (!modal) return;
 
     const index = modal.dataset.index;
-    const category = modal.dataset.category;
-    if (index === undefined || category === undefined) return;
+    const projectType = modal.dataset.projectType;
+    if (index === undefined || projectType === undefined) return;
 
-    const projects = JSON.parse(localStorage.getItem(`${category}Projects`)) || [];
+    const projects = JSON.parse(localStorage.getItem(`${projectType}Projects`)) || [];
     const project = projects[index];
 
     if (!project) return;
 
+    
     // Update project details with modal inputs
     project.name = document.getElementById("modalProjectName").value.trim();
     project.description = document.getElementById("modalProjectDescription").value.trim();
@@ -76,7 +149,7 @@ function saveChanges() {
 
     // Save updated project back to localStorage
     projects[index] = project;
-    localStorage.setItem(`${category}Projects`, JSON.stringify(projects));
+    localStorage.setItem(`${projectType}Projects`, JSON.stringify(projects));
 
     // Close modal and refresh projects display
     closeModal();
@@ -89,17 +162,17 @@ function deleteProject() {
     if (!modal) return;
 
     const index = modal.dataset.index;
-    const category = modal.dataset.category;
-    if (index === undefined || category === undefined) return;
+    const projectType = modal.dataset.projectType;
+    if (index === undefined || projectType === undefined) return;
 
-    const projects = JSON.parse(localStorage.getItem(`${category}Projects`)) || [];
+    const projects = JSON.parse(localStorage.getItem(`${projectType}Projects`)) || [];
     if (!projects[index]) return;
 
     // Remove the project
     projects.splice(index, 1);
 
     // Save the updated list back to localStorage
-    localStorage.setItem(`${category}Projects`, JSON.stringify(projects));
+    localStorage.setItem(`${projectType}Projects`, JSON.stringify(projects));
 
     // Close modal and refresh projects display
     closeModal();
@@ -112,14 +185,16 @@ function markProjectAsClosed() {
     if (!modal) return;
 
     const index = modal.dataset.index;
-    const category = modal.dataset.category;
-    if (index === undefined || category === undefined || category !== "ongoing") return;
+    const projectType = modal.dataset.projectType;
+    if (index === undefined || projectType === undefined || projectType !== "ongoing") return;
 
     const ongoingProjects = JSON.parse(localStorage.getItem("ongoingProjects")) || [];
     const closedProjects = JSON.parse(localStorage.getItem("closedProjects")) || [];
 
     const project = ongoingProjects[index];
     if (!project) return;
+
+    project.projectType = "closed";
 
     // Remove project from ongoing and add to closed
     ongoingProjects.splice(index, 1);

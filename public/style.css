@@ -85,7 +85,6 @@
 .modal {
   display: none;
   position: fixed;
-  z-index: 1000;
   left: 0;
   top: 0;
   width: 100%;
@@ -95,7 +94,7 @@
 }
 
 .modal-content {
-  background-color: #fff;
+  background-color: antiquewhite;
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
@@ -122,10 +121,15 @@
  gap: 10px;
 }
 
+#closedProjects {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+ }
+
 #projectModal {
   display: none;
   position:fixed;
-  z-index:1000;
   left: 0;
   top:0;
   width:100%;
@@ -135,6 +139,32 @@
   align-items:center;
   display:flex;
 }
+
+select {
+  z-index: 1000;
+  position: relative;
+  appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: white; /* Or another background that contrasts the text */
+    border: 1px solid #ccc;
+    padding: 5px;
+    color: black;
+}
+
+option {
+  color: black;
+  background-color: white;
+  display: block;
+  visibility: visible;
+
+}
+
+
+
+
+
+
 
 
 
