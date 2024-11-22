@@ -6,6 +6,18 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Middleware to parse JSON
+app.use(express.json());
+
+// Middleware to parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true }));
+
+// Start the server
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
 //Create Connection with MySql
 const db = mysql.createConnection({
     host: 'localhost',
@@ -15,6 +27,7 @@ const db = mysql.createConnection({
 });
 
 db.connect();
+
 
 // Get all projects
 app.get("/api/projects", (req, res) => {
