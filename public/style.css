@@ -141,7 +141,7 @@
 }
 
 select {
-  z-index: 1000;
+  z-index: 10;
   position: relative;
   appearance: none;
     -webkit-appearance: none;
@@ -150,6 +150,7 @@ select {
     border: 1px solid #ccc;
     padding: 5px;
     color: black;
+    cursor: pointer;
 }
 
 option {
@@ -157,7 +158,10 @@ option {
   background-color: white;
   display: block;
   visibility: visible;
+}
 
+select:focus {
+  outline: 2px solid rgb(161, 123, 161);
 }
 
 

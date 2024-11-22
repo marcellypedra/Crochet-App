@@ -78,6 +78,8 @@ async function loadDropdownFromJSON() {
         const data = await response.json();
         const dropdown = document.getElementById("supplies");
 
+        dropdown.innerHTML = '<option value="">Select a material</option>';
+
         // Loop through the JSON data and create options
         data.forEach(item => {
             const option = document.createElement("option");
