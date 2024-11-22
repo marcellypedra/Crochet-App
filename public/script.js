@@ -91,38 +91,43 @@ async function loadDropdownFromJSON() {
     }
 }
 
-function displayProjects() {
+async function displayProjects() {
     const ongoingContainer = document.getElementById("ongoingProjects");
     const closedContainer = document.getElementById("closedProjects");
-    const ongoingProjects = JSON.parse(localStorage.getItem("ongoingProjects")) || [];
-    const closedProjects = JSON.parse(localStorage.getItem("closedProjects")) || [];
+     
+    try {
+        const response = await fetch("/api/projects");
+        const{ ongoingProjects, closedProjects } = await response.json();
+    
+          // Clear existing content
+        if (ongoingContainer) ongoingContainer.innerHTML = "";
+        if (closedContainer) closedContainer.innerHTML = "";
 
-    // Clear existing content
-    if (ongoingContainer) ongoingContainer.innerHTML = "";
-    if (closedContainer) closedContainer.innerHTML = "";
+        // Populate ongoing projects
+        ongoingProjects.forEach((project, index) => {
+            const projectLink = document.createElement("a");
+            projectLink.textContent = project.name;
+            projectLink.href = "#";
+            projectLink.className = "project-link";
+            projectLink.onclick = () => openModal(project, index, "ongoing");
+            ongoingContainer.appendChild(projectLink);
+        });
 
-    // Populate ongoing projects
-    ongoingProjects.forEach((project, index) => {
-        const projectLink = document.createElement("a");
-        projectLink.textContent = project.name;
-        projectLink.href = "#";
-        projectLink.className = "project-link";
-        projectLink.onclick = () => openModal(project, index, "ongoing");
-        ongoingContainer.appendChild(projectLink);
-    });
-
-    // Populate closed projects
-    closedProjects.forEach((project, index) => {
-        const projectLink = document.createElement("a");
-        projectLink.textContent = project.name;
-        projectLink.href = "#";
-        projectLink.className = "project-link";
-        projectLink.onclick = () => openModal(project, index, "closed");
-        closedContainer.appendChild(projectLink);
-    });
+         // Populate closed projects
+        closedProjects.forEach((project, index) => {
+            const projectLink = document.createElement("a");
+            projectLink.textContent = project.name;
+            projectLink.href = "#";
+            projectLink.className = "project-link";
+            projectLink.onclick = () => openModal(project, index, "closed");
+            closedContainer.appendChild(projectLink);
+        });
+    } catch (error) {
+        console.error("Error fetching projects:", error)
+    }
 }
 
-function addtoProjectList() {
+async function addtoProjectList() {
     const projectName = document.getElementById("pname").value.trim();
     const projectDescription = document.getElementById("descr").value.trim();
     const projectUrl = document.getElementById("urlpattern").value.trim();
@@ -138,15 +143,24 @@ function addtoProjectList() {
 
     const project = { name: projectName, description: projectDescription, url: projectUrl, projectType, materials };
 
-    // Save to ongoing projects
-    const ongoingProjects = JSON.parse(localStorage.getItem("ongoingProjects")) || [];
-    ongoingProjects.push(project);
-    localStorage.setItem("ongoingProjects", JSON.stringify(ongoingProjects));
+    try {
+        const response = await fetch("/api/projects", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(project),
+        });
+   
+        if (response.ok) {
+            // Redirect to My Projects page
+            window.location.href = "Myproject.html";
+        } else {
+            const error = await response.json();
+            alert(`Error: ${error.message}`);
+        }
+    } catch (error) {
+        console.error("Error saving project:", error);
+    }
 
-    console.log("Saved Projects:", ongoingProjects);
-
-    // Redirect to My Projects page
-    window.location.href = "Myproject.html";
 }
 
 // Function to add selected items to a separate list

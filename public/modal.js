@@ -124,87 +124,86 @@ function closeModal() {
 }
 
 // Function to save changes to a project
-function saveChanges() {
+async function saveChanges() {
     const modal = document.getElementById("projectModal");
     if (!modal) return;
 
     const index = modal.dataset.index;
     const projectType = modal.dataset.projectType;
-    if (index === undefined || projectType === undefined) return;
-
-    const projects = JSON.parse(localStorage.getItem(`${projectType}Projects`)) || [];
-    const project = projects[index];
-
-    if (!project) return;
-
     
-    // Update project details with modal inputs
-    project.name = document.getElementById("modalProjectName").value.trim();
-    project.description = document.getElementById("modalProjectDescription").value.trim();
-    project.url = document.getElementById("modalProjectUrlInput").value.trim();
+    const project = {
+        id: modal.dataset.id,
+        name: document.getElementById("modalProjectName").value.trim(),
+        description: document.getElementById("modalProjectDescription").value.trim(),
+        url: document.getElementById("modalProjectUrlInput").value.trim(),
+        materials: Array.from(document.getElementById("modalProjectMaterials").children)
+            .map((li) => li.textContent.trim()),
+    };
 
-    // Update materials
-    const materialsList = document.getElementById("modalProjectMaterials");
-    project.materials = Array.from(materialsList.children).map((li) => li.textContent.trim());
+    try {
+        const response = await fetch(`/api/projects/${project.id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(project),
+        });
 
-    // Save updated project back to localStorage
-    projects[index] = project;
-    localStorage.setItem(`${projectType}Projects`, JSON.stringify(projects));
+        if (response.ok) {
+            closeModal();
+            displayProjects();
+        } else {
+            const error = await response.json();
+            alert(`Error: ${error.message}`);
+        }
 
-    // Close modal and refresh projects display
-    closeModal();
-    displayProjects();
+    } catch (error) {
+        console.error("Error updating project:", error);
+    }
+
 }
 
+
 // Function to delete a project
-function deleteProject() {
+async function deleteProject() {
     const modal = document.getElementById("projectModal");
     if (!modal) return;
 
-    const index = modal.dataset.index;
-    const projectType = modal.dataset.projectType;
-    if (index === undefined || projectType === undefined) return;
+    const projectId = modal.dataset.id;
 
-    const projects = JSON.parse(localStorage.getItem(`${projectType}Projects`)) || [];
-    if (!projects[index]) return;
+    try {
+        const response = await fetch(`/api/projects/${porjectId}`, {method: "DELETE" });
 
-    // Remove the project
-    projects.splice(index, 1);
-
-    // Save the updated list back to localStorage
-    localStorage.setItem(`${projectType}Projects`, JSON.stringify(projects));
-
-    // Close modal and refresh projects display
-    closeModal();
-    displayProjects();
+        if (response.ok) {
+            closeModal();
+            displayProjects();
+        } else {
+            const error = await response.json();
+            alert(`Error: ${error.message}`);
+        }
+    } catch (error) {
+        console.error("Error deleting project:", error);
+    }
 }
 
 // Function to mark a project as closed
-function markProjectAsClosed() {
+async function markProjectAsClosed() {
     const modal = document.getElementById("projectModal");
     if (!modal) return;
 
-    const index = modal.dataset.index;
-    const projectType = modal.dataset.projectType;
-    if (index === undefined || projectType === undefined || projectType !== "ongoing") return;
+    const projectId = modal.dataset.id;
+    
+    try {
+        const response = await fetch(`/api/projects/${projectId}/close`, {method: "PUT" });
 
-    const ongoingProjects = JSON.parse(localStorage.getItem("ongoingProjects")) || [];
-    const closedProjects = JSON.parse(localStorage.getItem("closedProjects")) || [];
+        if (response.ok) {
+            closeModal();
+            displayProjects();
+        } else {
+            const error = await response.json();
+            alert(`Error: ${error.message}`);
+        }
+    } catch (error) {
+        console.error("Error closing project:", error);
+    }
 
-    const project = ongoingProjects[index];
-    if (!project) return;
-
-    project.projectType = "closed";
-
-    // Remove project from ongoing and add to closed
-    ongoingProjects.splice(index, 1);
-    closedProjects.push(project);
-
-    // Save updated lists back to localStorage
-    localStorage.setItem("ongoingProjects", JSON.stringify(ongoingProjects));
-    localStorage.setItem("closedProjects", JSON.stringify(closedProjects));
-
-    // Close modal and refresh projects display
-    closeModal();
-    displayProjects();
 }
+    
