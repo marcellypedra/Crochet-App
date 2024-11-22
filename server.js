@@ -12,12 +12,6 @@ app.use(express.json());
 // Middleware to parse URL-encoded bodies
 app.use(express.urlencoded({ extended: true }));
 
-// Start the server
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
 //Create Connection with MySql
 const db = mysql.createConnection({
     host: 'localhost',
