@@ -7,7 +7,7 @@ app.use(express.json());
 
 //Create Connection with MySql
 const db = mysql.createConnection({
-    host: '20.224.113.89',
+    host: 'localhost',
     user: 'root',
     password: 'Viajantes*01',
     database: 'Crochet_App'
