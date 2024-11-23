@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Function to open the modal
-function openModal(project, index, projectType) {
+function openModal(project, index, project_type) {
     const modal = document.getElementById("projectModal");
     if (!modal) {
         console.error("Modal element not found")
@@ -56,7 +56,7 @@ function openModal(project, index, projectType) {
 
     // Store project index and category in the modal for later use
     modal.dataset.index = index;
-    modal.dataset.projectType = projectType;
+    modal.dataset.project_type = project_type;
 
     // Show the modal
     modal.style.display = "block";
@@ -86,12 +86,12 @@ function openModal(project, index, projectType) {
 
 
     // Handle buttons based on project type
-    if (projectType === "ongoing") {
+    if (project_type === "ongoing") {
         // Enable editing
         enableModalInputs();
         document.getElementById("markAsClosedButton").style.display = "block";
         document.getElementById("deleteProjectButton").style.display = "block";
-    } else if (projectType === "closed"){
+    } else if (project_type === "closed"){
         // Disable editing
         disableModalInputs();
         document.getElementById("saveChangesButton").style.display = "none";
@@ -129,7 +129,7 @@ async function saveChanges() {
     if (!modal) return;
 
     const index = modal.dataset.index;
-    const projectType = modal.dataset.projectType;
+    const project_type = modal.dataset.project_type;
     
     const project = {
         id: modal.dataset.id,
