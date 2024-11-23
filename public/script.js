@@ -131,7 +131,7 @@ async function addtoProjectList() {
     const projectName = document.getElementById("pname").value.trim();
     const projectDescription = document.getElementById("descr").value.trim();
     const projectUrl = document.getElementById("urlpattern").value.trim();
-    const projectType = "ongoing" // default
+    const project_type = "ongoing" // default
     const materials = Array.from(document.querySelectorAll("#selectedMaterialList li"))
         .map((li) => li.firstChild.textContent.trim())
         .filter((material) => material !== "");
@@ -141,7 +141,7 @@ async function addtoProjectList() {
         return;
     }
 
-    const project = { name: projectName, description: projectDescription, url: projectUrl, projectType, materials };
+    const project = { name: projectName, description: projectDescription, url: projectUrl, project_type, materials };
 
     try {
         const response = await fetch("/api/projects", {
