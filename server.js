@@ -13,38 +13,69 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //Create Connection with MySql
-const db = mysql.createConnection({
+const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: 'Viajantes*01',
-    database: 'Crochet_App'
+    database: 'Crochet_App',
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 });
 
-db.connect();
+const promisePool = pool.promise();
 
 
 // Get all projects
-app.get("/api/projects", (req, res) => {
-    const query = `
-        SELECT * FROM projects WHERE projectType ='ongoing';
-        SELECT * FROM projects WHERE projectType = 'closed';
-    `;
-    db.query(query, [ongoing, closed], (err, results) => {
-        if (err) return res.status(500).json({ message: err.message });
-        res.json({ ongoingProjects: results[0], closedProjects: results[1] });
-    });
+app.get("/api/projects", async (req, res) => {
+    try {
+        // Query to fetch ongoing projects
+        const [ongoingProjects] = await promisePool.execute('SELECT * FROM projects WHERE project_type = "ongoing"');
+
+        // Query to fetch closed projects
+        const [closedProjects] = await promisePool.execute('SELECT * FROM projects WHERE project_type = "closed"');
+
+        // Parse materials field if needed
+        ongoingProjects.forEach(project => {
+            project.materials = JSON.parse(project.materials); // Convert string back to array
+        });
+
+        closedProjects.forEach(project => {
+            project.materials = JSON.parse(project.materials); // Convert string back to array
+        });
+
+        // Send both sets of projects as a response
+        res.json({ ongoingProjects, closedProjects });
+    } catch (error) {
+        console.error("Error fetching projects:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
 });
  
 
 
 // Add a new project
-app.post("/api/projects", (req, res) => {
-    const { name, description, url, projectType, materials } = req.body;
-    const query = "INSERT INTO projects  SET ?";
-    db.query(query, { name, description, url, projectType, materials: JSON.stringify(materials) }, (err) => {
-        if (err) return res.status(500).json({ message: err.message });
-        res.status(201).send("Project created");
-    });
+app.post('/api/projects', async (req, res) => {
+    const { name, description, url, project_type, materials } = req.body;
+
+    // Check if required fields are present
+    if (!name || !project_type) {
+        return res.status(400).json({ message: "Missing required fields: name or project_type" });
+    }
+
+    try {
+        // Insert the new project into the database
+        const [result] = await promisePool.execute(
+            'INSERT INTO projects (name, description, url, project_type, materials) VALUES (?, ?, ?, ?, ?)',
+            [name, description, url, project_type, JSON.stringify(materials)]  // Store materials as a JSON string
+        );
+
+        // Send a success response with the ID of the new project
+        res.status(201).json({ message: "Project created successfully", projectId: result.insertId });
+    } catch (error) {
+        console.error("Error saving project:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
 });
 
 // Update a project
@@ -71,7 +102,7 @@ app.delete("/api/projects/:id", (req, res) => {
 // Mark project as closed
 app.put("/api/projects/:id/close", (req, res) => {
     const { id } = req.params;
-    const query = "UPDATE projects SET projectType = 'closed' WHERE id = ?";
+    const query = "UPDATE projects SET project_type = 'closed' WHERE id = ?";
     db.query(query, [id], (err) => {
         if (err) return res.status(500).json({ message: err.message });
         res.send("Project marked as closed");
