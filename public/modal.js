@@ -55,7 +55,7 @@ function openModal(project, index, project_type) {
       }
 
     // Store project index and category in the modal for later use
-    modal.dataset.index = index;
+    modal.dataset.id = project.id;
     modal.dataset.project_type = project_type;
 
     // Show the modal
@@ -128,11 +128,11 @@ async function saveChanges() {
     const modal = document.getElementById("projectModal");
     if (!modal) return;
 
-    const index = modal.dataset.index;
+    const projectId = modal.dataset.id;
     const project_type = modal.dataset.project_type;
     
     const project = {
-        id: modal.dataset.id,
+        id: projectId,
         name: document.getElementById("modalProjectName").value.trim(),
         description: document.getElementById("modalProjectDescription").value.trim(),
         url: document.getElementById("modalProjectUrlInput").value.trim(),
@@ -192,7 +192,10 @@ async function markProjectAsClosed() {
     const projectId = modal.dataset.id;
     
     try {
-        const response = await fetch(`/api/projects/${projectId}/close`, {method: "PUT" });
+        const response = await fetch(`/api/projects/${projectId}/close`, {
+            method: "PUT", 
+            headers: {"Content-Type": "application/json" },
+        });
 
         if (response.ok) {
             closeModal();
