@@ -104,12 +104,13 @@ async function displayProjects() {
         if (closedContainer) closedContainer.innerHTML = "";
 
         // Populate ongoing projects
-        ongoingProjects.forEach((project, index) => {
+        ongoingProjects.forEach((project) => {
             const projectLink = document.createElement("a");
             projectLink.textContent = project.name;
             projectLink.href = "#";
             projectLink.className = "project-link";
-            projectLink.onclick = () => openModal(project, index, "ongoing");
+            projectLink.dataset.id = project.id; //store project ID data in a dataset for later use
+            projectLink.onclick = () => openModal(project, "ongoing");
             ongoingContainer.appendChild(projectLink);
         });
 
@@ -119,7 +120,8 @@ async function displayProjects() {
             projectLink.textContent = project.name;
             projectLink.href = "#";
             projectLink.className = "project-link";
-            projectLink.onclick = () => openModal(project, index, "closed");
+            projectLink.dataset.id = project.id; //store project ID data in a dataset for later use
+            projectLink.onclick = () => openModal(project, "closed");
             closedContainer.appendChild(projectLink);
         });
     } catch (error) {
