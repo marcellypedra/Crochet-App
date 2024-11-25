@@ -29,12 +29,15 @@ const promisePool = pool.promise();
 // Get all projects
 app.get("/api/projects", async (req, res) => {
     try {
+        console.log("Fetching projects...");
         // Query to fetch ongoing projects
         const [ongoingProjects] = await promisePool.execute('SELECT * FROM projects WHERE project_type = "ongoing"');
 
         // Query to fetch closed projects
         const [closedProjects] = await promisePool.execute('SELECT * FROM projects WHERE project_type = "closed"');
 
+        console.log("Ongoing Projects:", ongoingProjects);
+        console.log("Closed Projects:", closedProjects);
         // Parse materials field if needed
         ongoingProjects.forEach(project => {
             project.materials = JSON.parse(project.materials); // Convert string back to array
