@@ -142,7 +142,7 @@ async function saveChanges() {
 
     try {
         const response = await fetch(`/api/projects/${project.id}`, {
-            method: "PUT",
+            method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(project),
         });
@@ -193,11 +193,7 @@ async function markProjectAsClosed() {
     
     try {
         const response = await fetch(`/api/projects/${projectId}/close`, {
-            method: "PUT", 
-            headers: {"Content-Type": "application/json" },
-        });
-
-        if (response.ok) {
+            method: "PATCH" {
             closeModal();
             displayProjects();
         } else {
