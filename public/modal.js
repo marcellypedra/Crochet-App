@@ -193,7 +193,10 @@ async function markProjectAsClosed() {
     
     try {
         const response = await fetch(`/api/projects/${projectId}/close`, {
-            method: "PATCH" {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(project),
+        });
             closeModal();
             displayProjects();
         } else {
