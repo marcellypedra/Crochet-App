@@ -82,7 +82,7 @@ app.post('/api/projects', async (req, res) => {
 });
 
 // Update a project
-app.put("/api/projects/:id", (req, res) => {
+app.patch("/api/projects/:id", (req, res) => {
     const { id } = req.params;
     const { name, description, url, materials } = req.body;
     const query = 'UPDATE projects SET name = ?, description = ?, url = ?, materials = ? WHERE id = ?';
@@ -103,7 +103,7 @@ app.delete("/api/projects/:id", (req, res) => {
 });
 
 // Mark project as closed
-app.put("/api/projects/:id/close", (req, res) => {
+app.patch("/api/projects/:id/close", (req, res) => {
     const { id } = req.params;
     const query = "UPDATE projects SET project_type = 'closed' WHERE id = ?";
     db.query(query, [id], (err) => {
