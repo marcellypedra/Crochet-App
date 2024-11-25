@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Function to open the modal
-function openModal(project, index, project_type) {
+function openModal(project, project_type) {
     const modal = document.getElementById("projectModal");
     if (!modal) {
         console.error("Modal element not found")
