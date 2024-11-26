@@ -170,7 +170,7 @@ async function deleteProject() {
     const projectId = modal.dataset.id;
 
     try {
-        const response = await fetch(`/api/projects/${porjectId}`, {method: "DELETE" });
+        const response = await fetch(`/api/projects/${projectId}`, {method: "DELETE" });
 
         if (response.ok) {
             closeModal();
