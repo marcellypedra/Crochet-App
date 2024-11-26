@@ -115,7 +115,7 @@ app.patch("/api/projects/:id/close", async (req, res) => {
     const { id } = req.params;
     try {
         await promisePool.execute( 
-            'UPDATE projects SET project_type = "closed" WHERE id = ?');
+            'UPDATE projects SET project_type = ? WHERE id = ?', ['closed', id]);
              res.send("Project marked as closed");
     } catch (error) {
         console.error("Error closing project:", error);
