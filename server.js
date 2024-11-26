@@ -85,31 +85,42 @@ app.post('/api/projects', async (req, res) => {
 app.patch("/api/projects/:id", (req, res) => {
     const { id } = req.params;
     const { name, description, url, materials } = req.body;
-    const query = 'UPDATE projects SET name = ?, description = ?, url = ?, materials = ? WHERE id = ?';
-    db.query(query, [name, description, url, JSON.stringify(materials), id], (err) => {
-        if (err) return res.status(500).json({ message: err.message });
-        res.send("Project updated");
-    });
+    try {
+        await promisePool.execute(
+            'UPDATE projects SET name = ?, description = ?, url = ?, materials = ? WHERE id = ?',
+            [name, description, url, JSON.stringify(materials), id]
+            );
+            res.send("Project updated");
+     } catch (error) {
+        console.error("Error updating project:", error);
+        res.status(500).json({message: "Internal Server Error" });
+     }
 });
 
 // Delete a project
 app.delete("/api/projects/:id", (req, res) => {
     const { id } = req.params;
-    const query = 'DELETE FROM projects WHERE id = ?';
-    db.query(query, [id], (err) => {
-        if (err) return res.status(500).json({ message: err.message });
+    
+    try {
+        await promisePool.execute('DELETE FROM projects WHERE id = ?', [id]);
         res.send("Project deleted");
-    });
+    } catch (error) {
+        console.error("Error deleting project:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
 });
 
 // Mark project as closed
 app.patch("/api/projects/:id/close", (req, res) => {
     const { id } = req.params;
-    const query = "UPDATE projects SET project_type = 'closed' WHERE id = ?";
-    db.query(query, [id], (err) => {
-        if (err) return res.status(500).json({ message: err.message });
-        res.send("Project marked as closed");
-    });
+    try {
+        await promisePool.execute( 
+            'UPDATE projects SET project_type = 'closed' WHERE id = ?");
+             res.send("Project marked as closed");
+    } catch (error) {
+        console.error("Error closing project:", error);
+        res.status(500).json({message: "Internal Server Error" });
+     }
 });
 
 app.listen(3000, () => console.log("Server running on port 3000"));
