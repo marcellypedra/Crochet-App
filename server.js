@@ -82,7 +82,7 @@ app.post('/api/projects', async (req, res) => {
 });
 
 // Update a project
-app.patch("/api/projects/:id", (req, res) => {
+app.patch("/api/projects/:id", async (req, res) => {
     const { id } = req.params;
     const { name, description, url, materials } = req.body;
     try {
@@ -98,7 +98,7 @@ app.patch("/api/projects/:id", (req, res) => {
 });
 
 // Delete a project
-app.delete("/api/projects/:id", (req, res) => {
+app.delete("/api/projects/:id", async (req, res) => {
     const { id } = req.params;
     
     try {
@@ -111,7 +111,7 @@ app.delete("/api/projects/:id", (req, res) => {
 });
 
 // Mark project as closed
-app.patch("/api/projects/:id/close", (req, res) => {
+app.patch("/api/projects/:id/close", async (req, res) => {
     const { id } = req.params;
     try {
         await promisePool.execute( 
