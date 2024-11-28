@@ -118,9 +118,9 @@ app.patch("/api/projects/:id", upload.single("image"), async (req, res) => {
 
         // If an image file is uploaded, prepare the image path
 
-        const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
+        let imagePath = req.file ? `/uploads/${req.file.filename}` : null;
 
-        const updateQuery = 
+        let updateQuery = 
             'UPDATE projects SET name = ?, description = ?, url = ?, materials = ? ';
 
         //Add the image field if applicable
