@@ -160,7 +160,7 @@ async function saveChanges() {
     }
         
     try {
-        const response = await fetch(`/api/projects/${project.id}`, {
+        const response = await fetch(`/api/projects/${projectId}`, {
             method: "PATCH",
             body: formData, // Send the FormData object
         });
