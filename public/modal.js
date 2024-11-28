@@ -54,7 +54,15 @@ function openModal(project, project_type) {
           modalProjectImage.style.display = "none";
       }
 
-    // Store project index and category in the modal for later use
+    // Restrict file input to ongoing projects
+    const pictureInput = document.getElementById("projectPicture");
+    if (project_type === "ongoing") {
+        pictureInput.style.display = "block";
+    } else {
+        pictureInput.style.display = "none";
+    }  
+
+    // Store project id and category in the modal for later use
     modal.dataset.id = project.id;
     modal.dataset.project_type = project_type;
 
@@ -139,7 +147,7 @@ async function saveChanges() {
         materials: Array.from(document.getElementById("modalProjectMaterials").children)
             .map((li) => li.textContent.trim()),
     };
-
+        
     try {
         const response = await fetch(`/api/projects/${project.id}`, {
             method: "PATCH",

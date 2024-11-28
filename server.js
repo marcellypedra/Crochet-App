@@ -2,9 +2,12 @@ const express = require('express');
 const mysql = require('mysql2');
 const path = require('path');
 const app = express();
+const bodyparser = require('body-parser');
+const multer = require ('multer');
 
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 //Middleware to parse JSON
 app.use(express.json());
@@ -41,10 +44,18 @@ app.get("/api/projects", async (req, res) => {
         // Parse materials field if needed
         ongoingProjects.forEach(project => {
             project.materials = JSON.parse(project.materials); // Convert string back to array
+            if (project.image) {
+                project.image = `http://20.224.113.89:3000${project.image}`;
+            
+            }
         });
 
         closedProjects.forEach(project => {
             project.materials = JSON.parse(project.materials); // Convert string back to array
+            if (project.image) {
+                project.image = `http://20.224.113.89:3000${project.image}`;
+            
+            } 
         });
 
         // Send both sets of projects as a response
@@ -82,15 +93,34 @@ app.post('/api/projects', async (req, res) => {
 });
 
 // Update a project
-app.patch("/api/projects/:id", async (req, res) => {
+app.patch("/api/projects/:id", upload.single("image"), async (req, res) => {
     const { id } = req.params;
     const { name, description, url, materials } = req.body;
     try {
-        await promisePool.execute(
-            'UPDATE projects SET name = ?, description = ?, url = ?, materials = ? WHERE id = ?',
-            [name, description, url, JSON.stringify(materials), id]
-            );
-            res.send("Project updated");
+        const [[project]] = await promisePool.execute(
+            "SELECT project_type FROM projects WHERE id = ?",
+            [id]
+        );
+         if (!project) {
+            return res.status(404).json({ message: "Project not found"});
+
+         }
+
+        // If an image file is uploaded, prepare the image path
+
+        const imagePath = req.file ? `uploads/${req.file.filename}` : null;
+
+        const updateQuery = 
+            'UPDATE projects SET name = ?, description = ?, url = ?, materials = ? ${imagePath ? ",image = ?2 :""} WHERE id = ?';
+
+        const queryParams = [name, description, url, JSON.stringify(materials)];
+        if (imagePath) queryParams.push(imagePath);
+        queryParams.push(id);
+
+        //Execute the update query
+        await promisePool.execute(updateQuery, queryParams);
+            
+            res.json("Project updated");
      } catch (error) {
         console.error("Error updating project:", error);
         res.status(500).json({message: "Internal Server Error" });
