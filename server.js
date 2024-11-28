@@ -121,10 +121,17 @@ app.patch("/api/projects/:id", upload.single("image"), async (req, res) => {
         const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
 
         const updateQuery = 
-            'UPDATE projects SET name = ?, description = ?, url = ?, materials = ? ${imagePath ? ", image = ?2 :""} WHERE id = ?';
+            'UPDATE projects SET name = ?, description = ?, url = ?, materials = ? ';
 
+        //Add the image field if applicable
         const queryParams = [name, description, url, JSON.stringify(materials)];
-        if (imagePath) queryParams.push(imagePath);
+        if (imagePath) {
+            updateQuery += ", image = ?";
+            queryParams.push(imagePath);
+        }
+        
+        //Add the condition for Project ID
+        updateQuery += "Where id = ?";
         queryParams.push(id);
 
         //Execute the update query

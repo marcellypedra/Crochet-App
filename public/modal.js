@@ -139,20 +139,30 @@ async function saveChanges() {
     const projectId = modal.dataset.id;
     const project_type = modal.dataset.project_type;
     
-    const project = {
-        id: projectId,
-        name: document.getElementById("modalProjectName").value.trim(),
-        description: document.getElementById("modalProjectDescription").value.trim(),
-        url: document.getElementById("modalProjectUrlInput").value.trim(),
-        materials: Array.from(document.getElementById("modalProjectMaterials").children)
-            .map((li) => li.textContent.trim()),
-    };
+    // Create a FormData object to handle the file and other data
+    const formData = new FormData();
+    formData.append("name", document.getElementById("modalProjectName").value.trim());
+    formData.append("description", document.getElementById("modalProjectDescription").value.trim());
+    formData.append("url", document.getElementById("modalProjectUrlInput").value.trim());
+    formData.append(
+        "materials",
+        JSON.stringify(
+            Array.from(document.getElementById("modalProjectMaterials").children).map(
+                (li) => li.textContent.trim()
+            )
+        )
+    );
+
+    // Append the image file if provided
+    const pictureInput = document.getElementById("projectPicture");
+    if (pictureInput.files.length > 0) {
+        formData.append("image", pictureInput.files[0]);
+    }
         
     try {
         const response = await fetch(`/api/projects/${project.id}`, {
             method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(project),
+            body: formData, // Send the FormData object
         });
 
         if (response.ok) {
