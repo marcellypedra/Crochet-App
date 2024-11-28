@@ -2,18 +2,28 @@ const express = require('express');
 const mysql = require('mysql2');
 const path = require('path');
 const app = express();
-const bodyparser = require('body-parser');
 const multer = require ('multer');
 
+// Configure multer to store uploaded images in the 'uploads' folder
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, 'uploads')); // Save files in 'uploads' directory
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname); // Unique filename
+    },
+});
 
+// Initialize multer with the storage configuration
+const upload = multer({ storage: storage });
+
+//Middleware setup
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(express.json()); //Middleware to parse JSON
+app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded bodies
 
-//Middleware to parse JSON
-app.use(express.json());
 
-// Middleware to parse URL-encoded bodies
-app.use(express.urlencoded({ extended: true }));
 
 //Create Connection with MySql
 const pool = mysql.createPool({
@@ -108,10 +118,10 @@ app.patch("/api/projects/:id", upload.single("image"), async (req, res) => {
 
         // If an image file is uploaded, prepare the image path
 
-        const imagePath = req.file ? `uploads/${req.file.filename}` : null;
+        const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
 
         const updateQuery = 
-            'UPDATE projects SET name = ?, description = ?, url = ?, materials = ? ${imagePath ? ",image = ?2 :""} WHERE id = ?';
+            'UPDATE projects SET name = ?, description = ?, url = ?, materials = ? ${imagePath ? ", image = ?2 :""} WHERE id = ?';
 
         const queryParams = [name, description, url, JSON.stringify(materials)];
         if (imagePath) queryParams.push(imagePath);
@@ -120,7 +130,7 @@ app.patch("/api/projects/:id", upload.single("image"), async (req, res) => {
         //Execute the update query
         await promisePool.execute(updateQuery, queryParams);
             
-            res.json("Project updated");
+        res.json({message: "Project updated"});
      } catch (error) {
         console.error("Error updating project:", error);
         res.status(500).json({message: "Internal Server Error" });
