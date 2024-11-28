@@ -131,7 +131,7 @@ app.patch("/api/projects/:id", upload.single("image"), async (req, res) => {
         }
         
         //Add the condition for Project ID
-        updateQuery += "Where id = ?";
+        updateQuery += " Where id = ?";
         queryParams.push(id);
 
         //Execute the update query
