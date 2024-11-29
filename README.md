@@ -1,39 +1,46 @@
 Crochet App
 
-Project for Programming Class
+Project for Programming Information Systems 
 
-Website where the user can track their crochet/Knitting projects. They will be able to: 
+Website where the user can track their crochet projects.
 
-create new projects; 
+Main features:
 
-add material list; 
+Users can create an account;
 
-calculate cost; 
+Users can create, update e delete projects.
 
-add pictures. 
+   
 
-  
 
-This app is directed at consumers of specific yarn and craft supplies. The main goal is to advertise the materials sold by the brand and help customers develop their own knitting/crochet projects. 
+CRUD OPERATIONS DETAILS:
 
-Create: 
+CREATE
 
- The system should allow the user to create their projects pulling the materials from a list of the range of products offered by the brand; 
-
-Read: 
-
-The user should be able to view, classify and move their projects based on status.
-
-Search for products and sort them by type, color and brand. 
+Create User's account (In process)
+Create projects (Implemented)
+Add materials (Implemented)
 
  
-Update 
 
-The user should be able to update the project details, including updating the material, inserting pictures, and changing the status. 
+READ 
+
+View Projects (implemented)
+Search Projects (In progress)
+
+ 
+UPDATE 
+
+Update project details(Implemented)
+Insert pictures (Implemented)
+Change projects' status (Implemented)
 
 
- Delete: 
- The user should be able to delete materials and pictures from projects as well as the projects themselves.
+DELETE 
+Delete materials (Implemented)
+Delete pictures ( In progress) 
+Delete Projects (Implemented)
+
 
  
 
