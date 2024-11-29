@@ -39,22 +39,20 @@ function openModal(project, project_type) {
     ? JSON.parse(project.materials) // Parse if it's a JSON string
     : [];
 
-     // Ensure materials is an array
-    if (Array.isArray(project.materials) && project.materials.length > 0) {
+
         // Populate the material list
-        project.materials.forEach((material) => {
+        materials.forEach((material) => {
             const listItem = document.createElement("li");
             listItem.textContent = material;
 
             const deleteButton = document.createElement("button");
-                deleteButton.textContent = "Remove";
-                deleteButton.onclick = () => {
-                    materialsList.removeChild(listItem);
-                };
-                listItem.appendChild(deleteButton);
-                materialsList.appendChild(listItem);
+            deleteButton.textContent = "Remove";
+            deleteButton.onclick = () => materialsList.removeChild(listItem);
+            
+            listItem.appendChild(deleteButton);
+            materialsList.appendChild(listItem);
         });
-    }
+    
     
 
     // Show the project image if available
