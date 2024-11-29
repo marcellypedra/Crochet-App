@@ -21,7 +21,7 @@ const upload = multer({ storage: storage });
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.json()); //Middleware to parse JSON
-app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true }));  // Middleware to parse URL-encoded bodies
 
 
 
