@@ -16,7 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Function to open the modal
 function openModal(project, project_type) {
+
     const modal = document.getElementById("projectModal");
+    console.log("Project data:", project); 
+
     if (!modal) {
         console.error("Modal element not found")
         return;
@@ -29,14 +32,15 @@ function openModal(project, project_type) {
     // Populate materials list
     const materialsList = document.getElementById("modalProjectMaterials");
     materialsList.innerHTML = ""; // Clear previous materials
-    
-     // Ensure materials is an array
-    const materials = Array.isArray(project.materials) 
-        ? project.materials 
-        : (typeof project.materials === "string" 
-            ? JSON.parse(project.materials || "[]") 
-            : []);
 
+    const materials = Array.isArray(project.materials)
+    ? project.materials
+    : typeof project.materials === "string"
+    ? JSON.parse(project.materials) // Parse if it's a JSON string
+    : [];
+
+     // Ensure materials is an array
+    if (Array.isArray(project.materials) && project.materials.length > 0) {
         // Populate the material list
         project.materials.forEach((material) => {
             const listItem = document.createElement("li");
@@ -50,6 +54,7 @@ function openModal(project, project_type) {
                 listItem.appendChild(deleteButton);
                 materialsList.appendChild(listItem);
         });
+    }
     
 
     // Show the project image if available
