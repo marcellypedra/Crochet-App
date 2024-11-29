@@ -134,7 +134,8 @@ app.patch("/api/projects/:id", upload.single("image"), async (req, res) => {
             'UPDATE projects SET name = ?, description = ?, url = ?, materials = ? ';
 
         //Add the image field if applicable
-        const queryParams = [name, description, url, JSON.stringify(materials)];
+        const queryParams = [name, description, url, Array.isArray(materials) ? JSON.stringify(materials)];
+        
         if (imagePath) {
             updateQuery += ", image = ?";
             queryParams.push(imagePath);

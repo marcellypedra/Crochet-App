@@ -109,6 +109,7 @@ function openModal(project, project_type) {
     if (project_type === "ongoing") {
         // Enable editing
         enableModalInputs();
+        document.getElementById("saveChangesButton").style.display = "block";
         document.getElementById("markAsClosedButton").style.display = "block";
         document.getElementById("deleteProjectButton").style.display = "block";
     } else if (project_type === "closed"){
