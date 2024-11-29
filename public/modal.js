@@ -86,7 +86,10 @@ function openModal(project, project_type) {
         const selectedMaterial = document.getElementById("supplies").value;
         if (selectedMaterial) {
             const listItem = document.createElement("li");
-            listItem.textContent = selectedMaterial;
+            
+            //create a separate text node only for the material name
+            const materialText = document.createTextNode(selectedMaterial);
+            listItem.appendChild = (materialText);
 
             const deleteButton = document.createElement("button");
             deleteButton.textContent = "Remove";
@@ -159,7 +162,7 @@ async function saveChanges() {
         "materials",
         JSON.stringify(
             Array.from(document.getElementById("modalProjectMaterials").children).map(
-                (li) => li.textContent.trim()
+                (li) => li.firstChild.textContent.trim() // get only the material name
             )
         )
     );
