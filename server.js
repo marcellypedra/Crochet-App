@@ -53,7 +53,12 @@ app.get("/api/projects", async (req, res) => {
         console.log("Closed Projects:", closedProjects);
         // Parse materials field if needed
         ongoingProjects.forEach(project => {
-            project.materials = JSON.parse(project.materials); // Convert string back to array
+            try {
+                project.materials = JSON.parse(project.materials) || [];
+            } catch {
+                project.materials = []; //convert from JSON to array
+
+            } 
             if (project.image) {
                 project.image = `http://20.224.113.89:3000${project.image}`;
             
@@ -61,7 +66,12 @@ app.get("/api/projects", async (req, res) => {
         });
 
         closedProjects.forEach(project => {
-            project.materials = JSON.parse(project.materials); // Convert string back to array
+            try {
+                project.materials = JSON.parse(project.materials) || [];
+            } catch {
+                project.materials = []; //convert from JSON to array
+
+            } 
             if (project.image) {
                 project.image = `http://20.224.113.89:3000${project.image}`;
             
