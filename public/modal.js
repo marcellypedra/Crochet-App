@@ -84,20 +84,22 @@ function openModal(project, project_type) {
       // Add material from dropdown
      document.getElementById("addMaterialButton").onclick = () => {
         const selectedMaterial = document.getElementById("supplies").value;
+        const materialsList = document.getElementById("modalProjectMaterials");
+        
         if (selectedMaterial) {
             const listItem = document.createElement("li");
             
             //create a separate text node only for the material name
             const materialText = document.createTextNode(selectedMaterial);
-            listItem.appendChild = (materialText);
+            listItem.appendChild(materialText);
 
             const deleteButton = document.createElement("button");
             deleteButton.textContent = "Remove";
             deleteButton.onclick = () => {
                 materialsList.removeChild(listItem);
             };
-            listItem.appendChild(deleteButton);
 
+            listItem.appendChild(deleteButton);
             materialsList.appendChild(listItem);
         } else {
             alert("Please select a material to add.");
