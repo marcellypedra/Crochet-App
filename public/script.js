@@ -162,7 +162,6 @@ async function addtoProjectList() {
     } catch (error) {
         console.error("Error saving project:", error);
     }
-
 }
 
 // Function to add selected items to a separate list

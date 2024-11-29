@@ -29,7 +29,14 @@ function openModal(project, project_type) {
     // Populate materials list
     const materialsList = document.getElementById("modalProjectMaterials");
     materialsList.innerHTML = ""; // Clear previous materials
-    if (project.materials && project.materials.length > 0) {
+    
+     // Ensure materials is an array
+    const materials = Array.isArray(project.materials) 
+        ? project.materials 
+        : (typeof project.materials === "string" 
+            ? JSON.parse(project.materials || "[]") 
+            : []);
+
         // Populate the material list
         project.materials.forEach((material) => {
             const listItem = document.createElement("li");
@@ -43,7 +50,7 @@ function openModal(project, project_type) {
                 listItem.appendChild(deleteButton);
                 materialsList.appendChild(listItem);
         });
-    }
+    
 
     // Show the project image if available
       const modalProjectImage = document.getElementById("modalProjectImage");
