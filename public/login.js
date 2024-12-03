@@ -1,4 +1,4 @@
-//Register User
+//Register User form
 async function CreateUser(event) {
     event.preventDefault();
 
@@ -39,7 +39,7 @@ try{
 // handle register form submission
 document.getElementById('register').addEventListener('submit', CreateUser);
 
-//Login
+//Login form
 async function Login(event) {
     event.preventDefault();
 
@@ -67,3 +67,62 @@ async function Login(event) {
 
 // handle login form submission
 document.getElementById('login').addEventListener('submit', Login);
+
+//Forgot Password Modal
+const modal = document.getElementById('resetPasswordModal');
+const closeModalButton = document.getElementById('closeModal');
+const forgotPasswordButton = document.getElementById('ForgotPwdbtn');
+const resetPasswordForm = document.getElementById('resetPwdForm');
+
+// Open the modal when the "Forgot Password?" button is clicked
+forgotPasswordButton.addEventListener('click', () => {
+    modal.style.display = 'block';
+});
+
+// Close the modal when the 'X' is clicked
+closeModalButton.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+// Close the modal when clicking outside the modal content
+window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+
+// Handle Reset Password Form Submission
+async function ResetPassword(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("ResetEmail").value;
+    const newPassword = document.getElementById("NewPwd").value;
+    const confirmNewPassword = document.getElementById("ConfirmNewPwd").value;
+
+    if (newPassword !== confirmNewPassword) {
+        alert('Passwords do not match.');
+        return;
+    }
+
+    try {
+        const response = await fetch("/api/reset-password", {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password: newPassword })
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert(data.message);
+            resetPasswordForm.reset();
+            modal.style.display = 'none';
+        } else {
+            alert(data.message);
+        }
+    } catch (error) {
+        console.error('Error resetting password:', error);
+    }
+}
+
+// Attach event listener to reset password form
+resetPasswordForm.addEventListener('submit', ResetPassword);

@@ -192,7 +192,6 @@ if (!username || !email || !password){
 
 try {
     //Hash the password
-    const bcrypt = require('bcrypt');
     const hashedPassword = await bcrypt.hash(password, 10);
 
     //Save the user to the database
@@ -246,5 +245,34 @@ app.post('/api/login', async (req, res) => {
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
+
+//Reset Password
+app.patch('/api/reset-password', async (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ message: 'Email and new password are required.' });
+    }
+
+    try {
+        // Find user by email
+        const user = await User.findOne({ where: { email } });
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found.' });
+        }
+
+        // Update the user's password 
+        const hashedPassword = await bcrypt.hash(password, 10); 
+        user.password = hashedPassword;
+        await user.save();
+
+        res.status(200).json({ message: 'Password updated successfully.' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error.' });
+    }
+});
+
 
 app.listen(3000, () => console.log("Server running on port 3000"));

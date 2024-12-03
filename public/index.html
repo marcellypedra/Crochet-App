@@ -22,9 +22,30 @@
                     </div>
                 </div>
                 <div class="btnForm">
-                    <input class="btn" id="Loginbtn" type="submit" value="Submit">
+                    <button class="btn" id="Loginbtn" type="login"> Login </button>
+                    <button class="btn" id="ForgotPwdbtn" type="ForgotPwd"> Forgot Password?</button>
+
                 </div>
             </form>
+
+            <!--Forgot Password Modal-->
+            <div id="resetPwdModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span id="closeModal" class="close">&times;</span>
+                    <h3>Reset Password</h3>
+                    <form id="resetPwdForm">
+                        <label for="ResetEmail">Email:</label><br>
+                        <input type="email" id="ResetEmail" name="ResetEmail" required><br>
+                        <label for="NewPassword">New Password:</label><br>
+                        <input type="password" id="NewPwd" name="NewPwd" required><br>
+                        <label for=ConfirmNewPwd>Confirm New Password:</label><br>
+                        <input type="password" id="ConfirmNewPwd" name="ConfirmNewPwd" required><br>
+                        <button type="update" class="btn">Update Password</button>
+                    </form>
+                </div>
+            </div>
+ 
+
 
             <!--REGISTER SECTION-->
 
@@ -42,7 +63,7 @@
                 </div>
             </div>
             <div class="btnForm">
-                <input class="btn" id="Registerbtn" type="submit" value="Submit">
+                <button class="btn" id="Registerbtn" type="register"> Register</button>                
             </div>
         </form>
             
