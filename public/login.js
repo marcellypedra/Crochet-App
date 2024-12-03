@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById('resetPwdModal');
     const closeModalButton = document.getElementById('closeModal');
     const forgotPasswordButton = document.getElementById('ForgotPwdbtn');
-    const resetPasswordForm = document.getElementById('resetPwdForm');
+    
 
     // Open the modal when the "Forgot Password?" button is clicked
     forgotPasswordButton.addEventListener('click', () => {
@@ -101,6 +101,7 @@ async function ResetPassword(event) {
     const email = document.getElementById("ResetEmail").value;
     const newPassword = document.getElementById("NewPwd").value;
     const confirmNewPassword = document.getElementById("ConfirmNewPwd").value;
+    const resetPasswordForm = document.getElementById('resetPwdForm');
 
     if (newPassword !== confirmNewPassword) {
         alert('Passwords do not match.');
@@ -126,6 +127,5 @@ async function ResetPassword(event) {
         console.error('Error resetting password:', error);
     }
 }
-
 // Attach event listener to reset password form
-resetPasswordForm.addEventListener('submit', ResetPassword);
+document.getElementById('resetPwdForm').addEventListener('submit', ResetPassword);
