@@ -56,9 +56,15 @@ document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTE
     const footerContainer = document.getElementById("showFooter");
     if (footerContainer) footerContainer.innerHTML = footerHTML;
 
-     // Load dropdown and display projects
-     loadDropdownFromJSON();
-     displayProjects();
+     // Load dropdown and display projects only when necessary
+    if (document.getElementById("supplies")) {
+        loadDropdownFromJSON();
+    }
+    
+    if(document.getElementById("ongoingProjects") || document.getElementById("closedProjects")) {
+        displayProjects();
+    }
+     
 });
 
 //Navigate to a page
