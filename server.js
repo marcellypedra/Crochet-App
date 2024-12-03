@@ -256,16 +256,17 @@ app.patch('/api/reset-password', async (req, res) => {
 
     try {
         // Find user by email
-        const user = await User.findOne({ where: { email } });
+        const [rows] = await promisePool.execute('SELECT * FROM users WHERE email = ?', [email]);
 
-        if (!user) {
+        if (rows.length === 0) {
             return res.status(404).json({ message: 'User not found.' });
         }
 
         // Update the user's password 
         const hashedPassword = await bcrypt.hash(password, 10); 
-        user.password = hashedPassword;
-        await user.save();
+        await promisePool.execute('UPDATE users SET password = ? WHERE email = ?', [hashedPassword, email]);
+
+
 
         res.status(200).json({ message: 'Password updated successfully.' });
     } catch (error) {
