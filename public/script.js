@@ -2,10 +2,13 @@
     const currentFile = window.location.pathname.split("/").pop();
     const pageContent = {
         "index.html": {
+            title: "Welcome to Yarn.com!",
+        },
+        "login.html": {
             title: "Welcome to Your Yarn.com!",
         },
          "Newproject.html": {
-            title: "Your Yarn.com projects",
+            title: "Create Your New Yarn.com project",
         },
         "Myproject.html": {
             title: "Your Yarn.com projects",
@@ -29,8 +32,9 @@ document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTE
         <nav class="headermenu">
             <ul class=navlist> 
             <li class="navitem"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="navitem"><a class="nav-link" href="login.html">Login</a></li>
              ${
-                  currentFile !== "index.html"
+                  currentFile !== "login.html" , "index.html"
                     ? `
                         <li class="navitem"><a class="nav-link" href="Newproject.html">Create New Project</a></li>
                         <li class="navitem"><a class="nav-link" href="Myproject.html">My Projects</a></li>
