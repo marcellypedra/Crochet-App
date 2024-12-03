@@ -69,27 +69,30 @@ async function Login(event) {
 document.getElementById('login').addEventListener('submit', Login);
 
 //Forgot Password Modal
-const modal = document.getElementById('resetPasswordModal');
-const closeModalButton = document.getElementById('closeModal');
-const forgotPasswordButton = document.getElementById('ForgotPwdbtn');
-const resetPasswordForm = document.getElementById('resetPwdForm');
+document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById('resetPwdModal');
+    const closeModalButton = document.getElementById('closeModal');
+    const forgotPasswordButton = document.getElementById('ForgotPwdbtn');
+    const resetPasswordForm = document.getElementById('resetPwdForm');
 
-// Open the modal when the "Forgot Password?" button is clicked
-forgotPasswordButton.addEventListener('click', () => {
-    modal.style.display = 'block';
-});
+    // Open the modal when the "Forgot Password?" button is clicked
+    forgotPasswordButton.addEventListener('click', () => {
+        modal.style.display = 'block';
+    });
 
-// Close the modal when the 'X' is clicked
-closeModalButton.addEventListener('click', () => {
-    modal.style.display = 'none';
-});
-
-// Close the modal when clicking outside the modal content
-window.addEventListener('click', (event) => {
-    if (event.target === modal) {
+    closeModalButton.addEventListener('click', () => {
         modal.style.display = 'none';
-    }
+    });
+
+    // Close the modal when clicking outside the modal content
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
 });
+
+
 
 // Handle Reset Password Form Submission
 async function ResetPassword(event) {
