@@ -2,7 +2,8 @@ const express = require('express');
 const mysql = require('mysql2');
 const path = require('path');
 const app = express();
-const multer = require ('multer');
+const multer = require ('multer'); //include multer for picture hadling
+const bcrypt = require('bcryptjs'); //include bcryptjs for password hashing
 
 // Configure multer to store uploaded images in the 'uploads' folder
 const storage = multer.diskStorage({
@@ -179,6 +180,71 @@ app.patch("/api/projects/:id/close", async (req, res) => {
         console.error("Error closing project:", error);
         res.status(500).json({message: "Internal Server Error" });
      }
+});
+
+// Create user
+app.post('/api/register', async (req, res) => {
+    const {username, email, password} = req.body;
+// Check if required fields are present
+if (!username || !email || !password){
+    return res.status(400).json({ message: "Missing required fields: name, email and password" });
+}
+
+try {
+    //Hash the password
+    const bcrypt = require('bcrypt');
+    const hashedPassword =await bcrypt.hash(password, 10);
+
+    //Save the user to the database
+
+    const [result] = await promisePool.execute(
+        'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
+        [username, email, hashedPassword]
+    );
+
+    res.status(201).json({ message: "User registered successfully", userId: result.insertId });
+} catch (error) {
+    console.error("Error during user registration:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+}
+});
+
+
+//Login validation
+app.post('/api/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ message: "Email and password are required" });
+    }
+
+    try {
+        // Fetch user by email
+        const [rows] = await promisePool.execute('SELECT * FROM users WHERE email = ?', [email]);
+
+        if (rows.length === 0) {
+            return res.status(401).json({ message: "Invalid email or password" });
+        }
+
+        const user = rows[0];
+
+        // Validate the password
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+
+        if (!isPasswordValid) {
+            return res.status(401).json({ message: "Invalid email or password" });
+        }
+
+        // Successful login
+        res.status(200).json({ 
+            message: "Login successful",
+            user: { user_id: user.id, username: user.username, email: user.email }
+        });
+
+    } catch (error) {
+        console.error("Error during login validation:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
 });
 
 app.listen(3000, () => console.log("Server running on port 3000"));

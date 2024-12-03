@@ -4,10 +4,7 @@
         "index.html": {
             title: "Welcome to Your Yarn.com!",
         },
-        "user.html": {
-            title: "Your Yarn.com"
-        },
-        "Newproject.html": {
+         "Newproject.html": {
             title: "Your Yarn.com projects",
         },
         "Myproject.html": {

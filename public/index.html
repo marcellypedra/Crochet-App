@@ -8,21 +8,43 @@
     </head>
     <body>
         <section id="showHeader"></section> 
-        <main class="main">
+        <main class="main double-column">
 
-           <form class="formLogin" action="user.html">
+            <!--LOGIN SECTION-->
+
+           <form id="login" class="formLogin">
                 <div class="divColumn">
-                    <div class="insertForm">
-                        <label for="username">Username:</label><br>
-                        <input class="userPwd" type="text" id="username" name="username" required><br>
+                    <div class="LoginForm">
+                        <label for="UserEmail">UserEmail:</label><br>
+                        <input class="UserEmail" type="text" id="UserEmail" name="UserEmail" required><br>
                         <label for="pwdLogin">Password:</label><br>
                         <input class="userPwd" type="password" id="pwdLogin" name="pwdLogin" required><br>
                     </div>
                 </div>
                 <div class="btnForm">
-                    <input class="btn" type="submit" value="Submit">
+                    <input class="btn" id="Loginbtn" type="submit" value="Submit">
                 </div>
             </form>
+
+            <!--REGISTER SECTION-->
+
+           <form id="register" class="formRegister">
+            <div class="divColumn">
+                <div class="RegisterForm">
+                    <label for="Newuser">Username:</label><br>
+                    <input class="Newuser" placeholder="Enter Full Name" type="text" id="Newuser" name="Newuser" required><br>
+                    <label for="NewUsermail">Email</label><br>
+                    <input class="NewUsermail" placeholder="Enter Email" type="text" id="NewUsermail" required><br>
+                    <label for="pwdLogin">Enter Password:</label><br>
+                    <input class="NewuserPwd" placeholder="Enter Password" type="password" id="NewuserPwd" name="NewuserPwd" required><br>
+                    <label for="pwdLogin">Repeat Password:</label><br>
+                    <input class="VNewuserPwd" placeholder="Confirm Password" type="password" id="VNewuserPwd" name="VNewuserPwd" required><br>
+                </div>
+            </div>
+            <div class="btnForm">
+                <input class="btn" id="Registerbtn" type="submit" value="Submit">
+            </div>
+        </form>
             
             </main>     
         <section id="showFooter"></section>    
@@ -31,6 +53,7 @@
         
         <script type="text/javascript" src="script.js"></script>
         <script type="text/javascript" src="modal.js"></script>
+        <script type="text/javascript" src="login.js"></script>
         <style  rel="stylesheet" href="style.css"></style>   
     </body>
 </html>
