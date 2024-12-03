@@ -29,10 +29,17 @@ document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTE
         <nav class="headermenu">
             <ul class=navlist> 
             <li class="navitem"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="navitem"><a class="nav-link" href="Newproject.html">Create New Project</a></li>
-            <li class="navitem"><a class="nav-link" href="Myproject.html">My Projects</a></li>
+             ${
+                  currentFile !== "index.html"
+                    ? `
+                        <li class="navitem"><a class="nav-link" href="Newproject.html">Create New Project</a></li>
+                        <li class="navitem"><a class="nav-link" href="Myproject.html">My Projects</a></li>
+                      `
+                    : ""
+                }
             </ul>
         </nav>
+    </div>
 </div>
 
 <link rel="stylesheet" href="style.css">
