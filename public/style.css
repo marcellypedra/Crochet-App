@@ -156,7 +156,7 @@ select {
 option {
   color: black;
   background-color: white;
-  display: block;
+  display: none;
   visibility: visible;
 }
 
