@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() { // # HEADER and FOOTE
             <li class="navitem"><a class="nav-link" href="index.html">Home</a></li>
             <li class="navitem"><a class="nav-link" href="login.html">Login</a></li>
              ${
-                  currentFile !== "login.html" , "index.html"
+                  currentFile !== "login.html" || "index.html"
                     ? `
                         <li class="navitem"><a class="nav-link" href="Newproject.html">Create New Project</a></li>
                         <li class="navitem"><a class="nav-link" href="Myproject.html">My Projects</a></li>
