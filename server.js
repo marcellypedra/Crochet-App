@@ -193,7 +193,7 @@ if (!username || !email || !password){
 try {
     //Hash the password
     const bcrypt = require('bcrypt');
-    const hashedPassword =await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     //Save the user to the database
 

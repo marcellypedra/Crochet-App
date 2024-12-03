@@ -17,7 +17,11 @@ try{
   const response = await fetch ("/api/register", {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ username, email, password })
+    body: JSON.stringify({ 
+        username: Newusername,
+        email: Newemail,
+        password: Newpassword
+    })
   });
 
   const data = await response.json();
@@ -32,6 +36,9 @@ try{
   }
 }
 
+// handle register form submission
+document.getElementById('register').addEventListener('submit', CreateUser);
+
 //Login
 async function Login(event) {
     event.preventDefault();
@@ -43,7 +50,7 @@ async function Login(event) {
         const response = await fetch("/api/login",{
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ email: useremail, password: password})
         });
 
         const data = await response.json();
@@ -57,3 +64,6 @@ async function Login(event) {
         console.error('Error login in', error); 
     }
 }
+
+// handle login form submission
+document.getElementById('login').addEventListener('submit', Login);
