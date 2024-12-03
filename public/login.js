@@ -56,7 +56,7 @@ async function Login(event) {
         const data = await response.json();
         if (response.ok) {
           alert(data.message);
-          window.location.href = 'Myproject.hmtl'; // redirect to Myprojects page
+          window.location.href = 'Myproject.html'; // redirect to Myprojects page
         } else {
           alert(data.message);
         }
