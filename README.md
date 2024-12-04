@@ -17,20 +17,20 @@ CRUD OPERATIONS DETAILS:
 
 CREATE
 
-Create User's account (In process)
+Create User's account (implemented)
 Create projects (Implemented)
 Add materials (Implemented)
 
  
 
 READ 
-
+User's Login (Implemented)
 View Projects (implemented)
 Search Projects (In progress)
 
  
 UPDATE 
-
+Reset user's password (Implemented)
 Update project details(Implemented)
 Insert pictures (Implemented)
 Change projects' status (Implemented)
