@@ -97,7 +97,8 @@ async function loadDropdownFromJSON() {
         // Loop through the JSON data and create options
         data.forEach(item => {
             const option = document.createElement("option");
-            option.value = item.name; // Use 'value' for datalist
+            option.value = item.name;
+            option.textContent = item.name; 
             dropdown.appendChild(option);
         });
     } catch (error) {
