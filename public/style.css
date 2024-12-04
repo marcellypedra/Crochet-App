@@ -160,6 +160,10 @@ option {
   visibility: visible;
 }
 
+datalist {
+  display: none;
+}
+
 select:focus {
   outline: 2px solid rgb(161, 123, 161);
 }
