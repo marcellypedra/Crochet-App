@@ -24,6 +24,7 @@
         <div id="projectModal" class="modal">
             <div class="modal-content">
                 <span class="close-button">&times;</span>
+                <form name="projectModal" id="prjtModal">
                 <h3>
                    <input id="modalProjectName" type="text" value="" placeholder="Project Name" />
                 </h3>
@@ -36,10 +37,12 @@
                 <ul id="modalProjectMaterials"></ul>
                 <div>
                     <label for="supplies">Select Material:</label>
-                    <select id="supplies">
+
+                    <input list="supplies" name="supplies" id="supplies">
                         <option value="">Select a material</option>
                     </select>
                     <button id="addMaterialButton">Add Material</button>
+                </form>
                 </div>
         
                 <p>
