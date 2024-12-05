@@ -1,52 +1,162 @@
 [
     {
-        "name": "Merino Wool Yarn",
+        "name": "Merino Wool Yarn - Cherry Red",
         "type": "yarn",
-        "description": "Soft and warm, perfect for cozy scarves and sweaters."
+        "description": "Soft and warm, perfect for cozy scarves and sweaters.",
+        "price": 12.99,
+        "weight": "50g",
+        "meterage": "100m"
     },
     {
-        "name": "Cotton Yarn",
+        "name": "Merino Wool Yarn - Ocean Blue",
         "type": "yarn",
-        "description": "Lightweight and breathable, ideal for summer projects."
+        "description": "Soft and warm, perfect for cozy scarves and sweaters.",
+        "price": 12.99,
+        "weight": "50g",
+        "meterage": "100m"
     },
     {
-        "name": "Alpaca Yarn",
+        "name": "Cotton Yarn - Bright Yellow",
         "type": "yarn",
-        "description": "Luxuriously soft and hypoallergenic, great for winter accessories."
+        "description": "Lightweight and breathable, ideal for summer projects.",
+        "price": 7.99,
+        "weight": "100g",
+        "meterage": "180m"
     },
     {
-        "name": "Silk Yarn",
+        "name": "Cotton Yarn - Soft Lavender",
         "type": "yarn",
-        "description": "Smooth and shiny, ideal for delicate and drapey items."
+        "description": "Lightweight and breathable, ideal for summer projects.",
+        "price": 7.99,
+        "weight": "100g",
+        "meterage": "180m"
     },
     {
-        "name": "Acrylic Yarn",
+        "name": "Alpaca Yarn - Snow White",
         "type": "yarn",
-        "description": "Affordable and durable, a great all-purpose yarn."
+        "description": "Luxuriously soft and hypoallergenic, great for winter accessories.",
+        "price": 18.49,
+        "weight": "50g",
+        "meterage": "110m"
     },
     {
-        "name": "Linen Yarn",
+        "name": "Alpaca Yarn - Charcoal Gray",
         "type": "yarn",
-        "description": "Strong and cool, perfect for summer garments."
+        "description": "Luxuriously soft and hypoallergenic, great for winter accessories.",
+        "price": 18.49,
+        "weight": "50g",
+        "meterage": "110m"
     },
     {
-        "name": "Bamboo Yarn",
+        "name": "Silk Yarn - Emerald Green",
         "type": "yarn",
-        "description": "Eco-friendly and soft, ideal for lightweight projects."
+        "description": "Smooth and shiny, ideal for delicate and drapey items.",
+        "price": 22.99,
+        "weight": "25g",
+        "meterage": "150m"
     },
     {
-        "name": "Cashmere Yarn",
+        "name": "Silk Yarn - Golden Beige",
         "type": "yarn",
-        "description": "Extremely soft and luxurious, perfect for scarves and shawls."
+        "description": "Smooth and shiny, ideal for delicate and drapey items.",
+        "price": 22.99,
+        "weight": "25g",
+        "meterage": "150m"
     },
     {
-        "name": "Mohair Yarn",
+        "name": "Acrylic Yarn - Deep Purple",
         "type": "yarn",
-        "description": "Fluffy and warm, ideal for creating airy and textured knits."
+        "description": "Affordable and durable, a great all-purpose yarn.",
+        "price": 4.99,
+        "weight": "100g",
+        "meterage": "200m"
     },
     {
-        "name": "Wool Blend Yarn",
+        "name": "Acrylic Yarn - Bright Pink",
         "type": "yarn",
-        "description": "A mix of wool and other fibers, combining durability with warmth."
+        "description": "Affordable and durable, a great all-purpose yarn.",
+        "price": 4.99,
+        "weight": "100g",
+        "meterage": "200m"
+    },
+    {
+        "name": "Linen Yarn - Natural Brown",
+        "type": "yarn",
+        "description": "Strong and cool, perfect for summer garments.",
+        "price": 10.99,
+        "weight": "50g",
+        "meterage": "120m"
+    },
+    {
+        "name": "Linen Yarn - Olive Green",
+        "type": "yarn",
+        "description": "Strong and cool, perfect for summer garments.",
+        "price": 10.99,
+        "weight": "50g",
+        "meterage": "120m"
+    },
+    {
+        "name": "Bamboo Yarn - Soft Pink",
+        "type": "yarn",
+        "description": "Eco-friendly and soft, ideal for lightweight projects.",
+        "price": 9.49,
+        "weight": "50g",
+        "meterage": "140m"
+    },
+    {
+        "name": "Bamboo Yarn - Pale Blue",
+        "type": "yarn",
+        "description": "Eco-friendly and soft, ideal for lightweight projects.",
+        "price": 9.49,
+        "weight": "50g",
+        "meterage": "140m"
+    },
+    {
+        "name": "Cashmere Yarn - Midnight Black",
+        "type": "yarn",
+        "description": "Extremely soft and luxurious, perfect for scarves and shawls.",
+        "price": 25.99,
+        "weight": "25g",
+        "meterage": "80m"
+    },
+    {
+        "name": "Cashmere Yarn - Royal Purple",
+        "type": "yarn",
+        "description": "Extremely soft and luxurious, perfect for scarves and shawls.",
+        "price": 25.99,
+        "weight": "25g",
+        "meterage": "80m"
+    },
+    {
+        "name": "Mohair Yarn - Blush Pink",
+        "type": "yarn",
+        "description": "Fluffy and warm, ideal for creating airy and textured knits.",
+        "price": 14.99,
+        "weight": "25g",
+        "meterage": "210m"
+    },
+    {
+        "name": "Mohair Yarn - Cloud Gray",
+        "type": "yarn",
+        "description": "Fluffy and warm, ideal for creating airy and textured knits.",
+        "price": 14.99,
+        "weight": "25g",
+        "meterage": "210m"
+    },
+    {
+        "name": "Wool Blend Yarn - Rust Orange",
+        "type": "yarn",
+        "description": "A mix of wool and other fibers, combining durability with warmth.",
+        "price": 8.99,
+        "weight": "100g",
+        "meterage": "180m"
+    },
+    {
+        "name": "Wool Blend Yarn - Forest Green",
+        "type": "yarn",
+        "description": "A mix of wool and other fibers, combining durability with warmth.",
+        "price": 8.99,
+        "weight": "100g",
+        "meterage": "180m"
     }
 ]
