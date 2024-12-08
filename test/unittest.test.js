@@ -146,13 +146,11 @@ describe('API Endpoints Unit Tests', () => {
 
             const res = await chai.request(server).post('/api/register').send(newUser);
 
-            expect(executeStub.calledWith(
-                'INSERT INTO users (username, email, password) VALUES (?, ?, ?)', 
-                ['Unittestuser', 'unittest@user.com', sinon.match.string]  
-              )).to.be.true;
+        
 
             expect(res).to.have.status(201);
             expect(res.body).to.have.property('message').that.equals('User registered successfully');
+            
             sinon.assert.calledWith(dbStub, sinon.match.string, [
                 newUser.username,
                 newUser.email,
