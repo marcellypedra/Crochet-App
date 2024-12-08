@@ -134,8 +134,6 @@ describe('API Endpoints Unit Tests', () => {
         //Test User registration 
         it('POST /api/register should register a new user', async () => {
 
-            const executeStub = sinon.stub(promisePool, 'execute').resolves([{ insertId: 1 }]);  
-
             const hashedPassword = await bcrypt.hash(newUser.password, 10); 
 
             const newUser = {
@@ -143,6 +141,8 @@ describe('API Endpoints Unit Tests', () => {
                 email: 'unittest@user.com',
                 password: hashedPassword
             };
+
+            dbStub.resolves([{ insertId: 1 }]);
 
             const res = await chai.request(server).post('/api/register').send(newUser);
 
@@ -160,7 +160,6 @@ describe('API Endpoints Unit Tests', () => {
 
             ]);
 
-            executeStub.restore();
         });
 
         //Test user login
