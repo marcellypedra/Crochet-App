@@ -1,9 +1,9 @@
 const express = require('express');
-const mysql = require('mysql2');
 const path = require('path');
 const app = express();
 const multer = require ('multer'); //include multer for picture hadling
 const bcrypt = require('bcryptjs'); //include bcryptjs for password hashing
+const { promisePool } = require('./db');
 
 // Configure multer to store uploaded images in the 'uploads' folder
 const storage = multer.diskStorage({
@@ -24,20 +24,6 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.json()); //Middleware to parse JSON
 app.use(express.urlencoded({ extended: true }));  // Middleware to parse URL-encoded bodies
 
-
-
-//Create Connection with MySql
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'Viajantes*01',
-    database: 'Crochet_App',
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
-});
-
-const promisePool = pool.promise();
 
 
 // Get all projects
