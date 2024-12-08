@@ -52,7 +52,7 @@ try{
     const data = await response.json();
     if (response.ok) {
         alert(data.message);
-        document.getElementById('RegisterForm').reset();
+        RegisterForm.reset();
         modal.style.display = 'none';
     } else {
         alert(data.message);
