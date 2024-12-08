@@ -32,6 +32,7 @@ const Newusername = document.getElementById("Newuser").value;
 const Newemail = document.getElementById("NewUsermail").value;
 const Newpassword = document.getElementById("NewuserPwd").value;
 const confirmPassword = document.getElementById("VNewuserPwd").value;
+const RegisterForm = document.getElementById('RegisterForm');
 
 if (Newpassword !== confirmPassword) {
     alert ('Passwords do not match.');
