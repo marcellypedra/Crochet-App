@@ -133,17 +133,23 @@ describe('API Endpoints Unit Tests', () => {
 
         //Test User registration 
         it('POST /api/register should register a new user', async () => {
-            const newUser = {
-                username: 'Unittestuser',
-                email: 'unittest@user.com',
-                password: 'password123'
-            };
+
+            const executeStub = sinon.stub(promisePool, 'execute').resolves([{ insertId: 1 }]);  
 
             const hashedPassword = await bcrypt.hash(newUser.password, 10); 
 
-            dbStub.resolves([{ insertId: 1 }]);
+            const newUser = {
+                username: 'Unittestuser',
+                email: 'unittest@user.com',
+                password: hashedPassword
+            };
 
             const res = await chai.request(server).post('/api/register').send(newUser);
+
+            expect(executeStub.calledWith(
+                'INSERT INTO users (username, email, password) VALUES (?, ?, ?)', 
+                ['Unittestuser', 'unittest@user.com', sinon.match.string]  
+              )).to.be.true;
 
             expect(res).to.have.status(201);
             expect(res.body).to.have.property('message').that.equals('User registered successfully');
@@ -151,7 +157,10 @@ describe('API Endpoints Unit Tests', () => {
                 newUser.username,
                 newUser.email,
                 hashedPassword
+
             ]);
+
+            executeStub.restore();
         });
 
         //Test user login
