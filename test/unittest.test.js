@@ -150,11 +150,11 @@ describe('API Endpoints Unit Tests', () => {
 
             expect(res).to.have.status(201);
             expect(res.body).to.have.property('message').that.equals('User registered successfully');
-            
+
             sinon.assert.calledWith(dbStub, sinon.match.string, [
                 newUser.username,
                 newUser.email,
-                hashedPassword
+                sinon.match((password) => bcrypt.compareSync(newUser.password, password))
 
             ]);
 
@@ -177,7 +177,7 @@ describe('API Endpoints Unit Tests', () => {
             expect(res.body).to.have.property('message').that.equals('Login successful');
         });
         
-        it('POST /api/register should fail with invalid credentials', async () => {
+        it('POST /api/login should fail with invalid credentials', async () => {
             const user = {
                 email: 'wrong@user.com',
                 password: 'wrongpassword'
