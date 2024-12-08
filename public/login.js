@@ -39,30 +39,31 @@ if (Newpassword !== confirmPassword) {
 }
 
 try{
-  const response = await fetch ("/api/register", {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ 
+    const response = await fetch ("/api/register", {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ 
         username: Newusername,
         email: Newemail,
         password: Newpassword
-    })
-  });
+        })
+    });
 
-  const data = await response.json();
-  if (response.ok) {
-    alert(data.message);
-    document.getElementById('register').reset();
+    const data = await response.json();
+    if (response.ok) {
+        alert(data.message);
+        document.getElementById('RegisterForm').reset();
+        modal.style.display = 'none';
     } else {
-      alert(data.message);
-    }
-  } catch (error) {
+        alert(data.message);
+  }
+} catch (error) {
     console.error('Error:', error);
   }
 }
 
 // handle register form submission
-document.getElementById('register').addEventListener('submit', CreateUser);
+document.getElementById('RegisterForm').addEventListener('submit', CreateUser);
 
 //Login form
 async function Login(event) {
@@ -80,12 +81,12 @@ async function Login(event) {
 
         const data = await response.json();
         if (response.ok) {
-          alert(data.message);
-          window.location.href = 'Myproject.html'; // redirect to Myprojects page
+            alert(data.message);
+            window.location.href = 'Myproject.html'; // redirect to Myprojects page
         } else {
-          alert(data.message);
+            alert(data.message);
         }
-      } catch (error) {
+    } catch (error) {
         console.error('Error login in', error); 
     }
 }
