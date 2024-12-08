@@ -137,7 +137,7 @@ describe('API Endpoints Unit Tests', () => {
             const newUser = {
                 username: 'Unittestuser',
                 email: 'unittest@user.com',
-                password: hashedPassword
+                password: 'password123'
             };
 
             const hashedPassword = await bcrypt.hash(newUser.password, 10);
