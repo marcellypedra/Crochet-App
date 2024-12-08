@@ -134,13 +134,13 @@ describe('API Endpoints Unit Tests', () => {
         //Test User registration 
         it('POST /api/register should register a new user', async () => {
 
-            const hashedPassword = await bcrypt.hash(newUser.password, 10); 
-
             const newUser = {
                 username: 'Unittestuser',
                 email: 'unittest@user.com',
                 password: hashedPassword
             };
+
+            const hashedPassword = await bcrypt.hash(newUser.password, 10);
 
             dbStub.resolves([{ insertId: 1 }]);
 
