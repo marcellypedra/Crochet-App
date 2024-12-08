@@ -24,6 +24,7 @@
                 <div class="btnForm">
                     <button class="btn" id="Loginbtn" type="login"> Login </button>
                     <button class="btn" id="ForgotPwdbtn" type="ForgotPwd"> Forgot Password?</button>
+                    <button class="btn" id="Registerbtn" type="register"> Register</button>
 
                 </div>
             </form>
@@ -31,7 +32,7 @@
             <!--Forgot Password Modal-->
             <div id="resetPwdModal" class="modal" style="display: none;">
                 <div class="modal-content">
-                    <span id="closeModal" class="close">&times;</span>
+                    <span id="PwdcloseModal" class="close">&times;</span>
                     <h3>Reset Password</h3>
                     <form id="resetPwdForm">
                         <label for="ResetEmail">Email:</label><br>
@@ -47,27 +48,31 @@
  
 
 
-            <!--REGISTER SECTION-->
+            <!--REGISTER MODAL-->
 
-           <form id="register" class="formRegister">
-            <div class="divColumn">
-                <div class="RegisterForm">
-                    <label for="Newuser">Username:</label><br>
-                    <input class="Newuser" placeholder="Enter Full Name" type="text" id="Newuser" name="Newuser" required><br>
-                    <label for="NewUsermail">Email</label><br>
-                    <input class="NewUsermail" placeholder="Enter Email" type="text" id="NewUsermail" required><br>
-                    <label for="pwdLogin">Enter Password:</label><br>
-                    <input class="NewuserPwd" placeholder="Enter Password" type="password" id="NewuserPwd" name="NewuserPwd" required><br>
-                    <label for="pwdLogin">Repeat Password:</label><br>
-                    <input class="VNewuserPwd" placeholder="Confirm Password" type="password" id="VNewuserPwd" name="VNewuserPwd" required><br>
+            <div id="registerModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span id="registercloseModal" class="close">&times;</span>
+                    <h3>Register</h3>
+                    <form id="RegisterForm">
+                        <label for="Newuser">Username:</label><br>
+                        <input class="Newuser" placeholder="Enter Full Name" type="text" id="Newuser" name="Newuser" required><br>
+                        <label for="NewUsermail">Email</label><br>
+                        <input class="NewUsermail" placeholder="Enter Email" type="text" id="NewUsermail" required><br>
+                        <label for="pwdLogin">Enter Password:</label><br>
+                        <input class="NewuserPwd" placeholder="Enter Password" type="password" id="NewuserPwd" name="NewuserPwd" required><br>
+                        <label for="pwdLogin">Repeat Password:</label><br>
+                        <input class="VNewuserPwd" placeholder="Confirm Password" type="password" id="VNewuserPwd" name="VNewuserPwd" required><br>
+                        <button type="register" class="btn" > Register</button>
+                    </form>
                 </div>
             </div>
-            <div class="btnForm">
-                <button class="btn" id="Registerbtn" type="register"> Register</button>                
-            </div>
-        </form>
             
-            </main>     
+                                
+            
+        
+            
+        </main>     
         <section id="showFooter"></section>    
         
         

@@ -1,3 +1,28 @@
+//Register Modal
+document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById('registerModal');
+    const closeRegisterModalButton = document.getElementById('registercloseModal');
+    const registerButton = document.getElementById('Registerbtn');
+    
+
+    // Open the modal when the "Register" button is clicked
+    registerButton.addEventListener('click', () => {
+        modal.style.display = 'block';
+    });
+
+    closeRegisterModalButton.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    // Close the modal when clicking outside the modal content
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
+
+
 //Register User form
 async function CreateUser(event) {
     event.preventDefault();
@@ -71,7 +96,7 @@ document.getElementById('login').addEventListener('submit', Login);
 //Forgot Password Modal
 document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById('resetPwdModal');
-    const closeModalButton = document.getElementById('closeModal');
+    const closeModalButton = document.getElementById('PwdcloseModal');
     const forgotPasswordButton = document.getElementById('ForgotPwdbtn');
     
 
@@ -129,3 +154,5 @@ async function ResetPassword(event) {
 }
 // Attach event listener to reset password form
 document.getElementById('resetPwdForm').addEventListener('submit', ResetPassword);
+
+
