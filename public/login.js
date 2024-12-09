@@ -147,6 +147,7 @@ async function ResetPassword(event) {
         if (response.ok) {
             alert(data.message);
             resetPasswordForm.reset();
+            window.parent.location.reload();
             modal.style.display = 'none';
         } else {
             alert(data.message);
