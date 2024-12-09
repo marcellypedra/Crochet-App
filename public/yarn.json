@@ -1,162 +1,50 @@
-[
-    {
-        "name": "Merino Wool Yarn - Cherry Red",
-        "type": "yarn",
-        "description": "Soft and warm, perfect for cozy scarves and sweaters.",
-        "price": 12.99,
-        "weight": "50g",
-        "meterage": "100m"
-    },
-    {
-        "name": "Merino Wool Yarn - Ocean Blue",
-        "type": "yarn",
-        "description": "Soft and warm, perfect for cozy scarves and sweaters.",
-        "price": 12.99,
-        "weight": "50g",
-        "meterage": "100m"
-    },
-    {
-        "name": "Cotton Yarn - Bright Yellow",
-        "type": "yarn",
-        "description": "Lightweight and breathable, ideal for summer projects.",
-        "price": 7.99,
-        "weight": "100g",
-        "meterage": "180m"
-    },
-    {
-        "name": "Cotton Yarn - Soft Lavender",
-        "type": "yarn",
-        "description": "Lightweight and breathable, ideal for summer projects.",
-        "price": 7.99,
-        "weight": "100g",
-        "meterage": "180m"
-    },
-    {
-        "name": "Alpaca Yarn - Snow White",
-        "type": "yarn",
-        "description": "Luxuriously soft and hypoallergenic, great for winter accessories.",
-        "price": 18.49,
-        "weight": "50g",
-        "meterage": "110m"
-    },
-    {
-        "name": "Alpaca Yarn - Charcoal Gray",
-        "type": "yarn",
-        "description": "Luxuriously soft and hypoallergenic, great for winter accessories.",
-        "price": 18.49,
-        "weight": "50g",
-        "meterage": "110m"
-    },
-    {
-        "name": "Silk Yarn - Emerald Green",
-        "type": "yarn",
-        "description": "Smooth and shiny, ideal for delicate and drapey items.",
-        "price": 22.99,
-        "weight": "25g",
-        "meterage": "150m"
-    },
-    {
-        "name": "Silk Yarn - Golden Beige",
-        "type": "yarn",
-        "description": "Smooth and shiny, ideal for delicate and drapey items.",
-        "price": 22.99,
-        "weight": "25g",
-        "meterage": "150m"
-    },
-    {
-        "name": "Acrylic Yarn - Deep Purple",
-        "type": "yarn",
-        "description": "Affordable and durable, a great all-purpose yarn.",
-        "price": 4.99,
-        "weight": "100g",
-        "meterage": "200m"
-    },
-    {
-        "name": "Acrylic Yarn - Bright Pink",
-        "type": "yarn",
-        "description": "Affordable and durable, a great all-purpose yarn.",
-        "price": 4.99,
-        "weight": "100g",
-        "meterage": "200m"
-    },
-    {
-        "name": "Linen Yarn - Natural Brown",
-        "type": "yarn",
-        "description": "Strong and cool, perfect for summer garments.",
-        "price": 10.99,
-        "weight": "50g",
-        "meterage": "120m"
-    },
-    {
-        "name": "Linen Yarn - Olive Green",
-        "type": "yarn",
-        "description": "Strong and cool, perfect for summer garments.",
-        "price": 10.99,
-        "weight": "50g",
-        "meterage": "120m"
-    },
-    {
-        "name": "Bamboo Yarn - Soft Pink",
-        "type": "yarn",
-        "description": "Eco-friendly and soft, ideal for lightweight projects.",
-        "price": 9.49,
-        "weight": "50g",
-        "meterage": "140m"
-    },
-    {
-        "name": "Bamboo Yarn - Pale Blue",
-        "type": "yarn",
-        "description": "Eco-friendly and soft, ideal for lightweight projects.",
-        "price": 9.49,
-        "weight": "50g",
-        "meterage": "140m"
-    },
-    {
-        "name": "Cashmere Yarn - Midnight Black",
-        "type": "yarn",
-        "description": "Extremely soft and luxurious, perfect for scarves and shawls.",
-        "price": 25.99,
-        "weight": "25g",
-        "meterage": "80m"
-    },
-    {
-        "name": "Cashmere Yarn - Royal Purple",
-        "type": "yarn",
-        "description": "Extremely soft and luxurious, perfect for scarves and shawls.",
-        "price": 25.99,
-        "weight": "25g",
-        "meterage": "80m"
-    },
-    {
-        "name": "Mohair Yarn - Blush Pink",
-        "type": "yarn",
-        "description": "Fluffy and warm, ideal for creating airy and textured knits.",
-        "price": 14.99,
-        "weight": "25g",
-        "meterage": "210m"
-    },
-    {
-        "name": "Mohair Yarn - Cloud Gray",
-        "type": "yarn",
-        "description": "Fluffy and warm, ideal for creating airy and textured knits.",
-        "price": 14.99,
-        "weight": "25g",
-        "meterage": "210m"
-    },
-    {
-        "name": "Wool Blend Yarn - Rust Orange",
-        "type": "yarn",
-        "description": "A mix of wool and other fibers, combining durability with warmth.",
-        "price": 8.99,
-        "weight": "100g",
-        "meterage": "180m"
-    },
-    {
-        "name": "Wool Blend Yarn - Forest Green",
-        "type": "yarn",
-        "description": "A mix of wool and other fibers, combining durability with warmth.",
-        "price": 8.99,
-        "weight": "100g",
-        "meterage": "180m"
-    }
-]
+[{"name":"Caron - Bamboo - Yellow","description":"Luxurious for shawls","price":"€9,12","meterage":776.85,"weight":212.72},
+{"name":"Caron - Bamboo - Yellow","description":"Durable for blankets","price":"€9,41","meterage":549.93,"weight":205.04},
+{"name":"Lion Brand - Acrylic - Blue","description":"Vibrant colors for hats","price":"€2,44","meterage":36.62,"weight":470.87},
+{"name":"Lion Brand - Acrylic - Blue","description":"Soft and cozy for scarves","price":"€6,88","meterage":480.66,"weight":252.75},
+{"name":"Caron - Bamboo - Yellow","description":"Soft and cozy for scarves","price":"€7,96","meterage":664.73,"weight":111.8},
+{"name":"Bernat - Wool - Red","description":"Soft and cozy for scarves","price":"€6,32","meterage":689.84,"weight":428.18},
+{"name":"Bernat - Wool - Red","description":"Vibrant colors for hats","price":"€0,54","meterage":53.19,"weight":189.48},
+{"name":"Red Heart - Cotton - Green","description":"Soft and cozy for scarves","price":"€3,78","meterage":549.76,"weight":453.0},
+{"name":"Red Heart - Cotton - Green","description":"Soft and cozy for scarves","price":"€0,78","meterage":554.36,"weight":491.11},
+{"name":"Caron - Bamboo - Yellow","description":"Luxurious for shawls","price":"€0,20","meterage":856.94,"weight":451.83},
+{"name":"Bernat - Wool - Red","description":"Soft and cozy for scarves","price":"€5,58","meterage":241.17,"weight":493.47},
+{"name":"Caron - Bamboo - Yellow","description":"Soft and cozy for scarves","price":"€8,25","meterage":170.5,"weight":202.29},
+{"name":"Caron - Bamboo - Yellow","description":"Durable for blankets","price":"€4,89","meterage":670.08,"weight":253.61},
+{"name":"Lion Brand - Acrylic - Blue","description":"Luxurious for shawls","price":"€5,35","meterage":809.58,"weight":131.02},
+{"name":"Lion Brand - Acrylic - Blue","description":"Durable for blankets","price":"€9,00","meterage":101.58,"weight":476.54},
+{"name":"Bernat - Wool - Red","description":"Luxurious for shawls","price":"€7,60","meterage":12.35,"weight":157.97},
+{"name":"Caron - Bamboo - Yellow","description":"Soft and cozy for scarves","price":"€8,47","meterage":998.85,"weight":369.1},
+{"name":"Bernat - Wool - Red","description":"Durable for blankets","price":"€7,37","meterage":613.81,"weight":297.46},
+{"name":"Lion Brand - Acrylic - Blue","description":"Soft and cozy for scarves","price":"€5,62","meterage":808.96,"weight":298.08},
+{"name":"Red Heart - Cotton - Green","description":"Durable for blankets","price":"€1,97","meterage":754.72,"weight":459.67},
+{"name":"Bernat - Wool - Red","description":"Luxurious for shawls","price":"€8,62","meterage":489.12,"weight":459.04},
+{"name":"Lion Brand - Acrylic - Blue","description":"Vibrant colors for hats","price":"€0,63","meterage":519.39,"weight":293.28},
+{"name":"Bernat - Wool - Red","description":"Durable for blankets","price":"€3,48","meterage":624.72,"weight":441.34},
+{"name":"Red Heart - Cotton - Green","description":"Luxurious for shawls","price":"€1,93","meterage":448.89,"weight":491.74},
+{"name":"Caron - Bamboo - Yellow","description":"Luxurious for shawls","price":"€6,87","meterage":548.92,"weight":186.78},
+{"name":"Caron - Bamboo - Yellow","description":"Soft and cozy for scarves","price":"€0,72","meterage":625.98,"weight":198.83},
+{"name":"Caron - Bamboo - Yellow","description":"Vibrant colors for hats","price":"€2,66","meterage":824.68,"weight":345.28},
+{"name":"Bernat - Wool - Red","description":"Durable for blankets","price":"€0,00","meterage":249.25,"weight":177.99},
+{"name":"Bernat - Wool - Red","description":"Soft and cozy for scarves","price":"€4,40","meterage":38.39,"weight":447.54},
+{"name":"Red Heart - Cotton - Green","description":"Soft and cozy for scarves","price":"€8,66","meterage":62.68,"weight":333.13},
+{"name":"Caron - Bamboo - Yellow","description":"Durable for blankets","price":"€9,62","meterage":763.01,"weight":314.56},
+{"name":"Red Heart - Cotton - Green","description":"Soft and cozy for scarves","price":"€3,57","meterage":507.4,"weight":437.32},
+{"name":"Caron - Bamboo - Yellow","description":"Soft and cozy for scarves","price":"€1,18","meterage":825.46,"weight":233.06},
+{"name":"Lion Brand - Acrylic - Blue","description":"Luxurious for shawls","price":"€6,07","meterage":510.68,"weight":285.79},
+{"name":"Lion Brand - Acrylic - Blue","description":"Luxurious for shawls","price":"€3,88","meterage":151.59,"weight":436.44},
+{"name":"Lion Brand - Acrylic - Blue","description":"Luxurious for shawls","price":"€2,57","meterage":839.62,"weight":175.34},
+{"name":"Red Heart - Cotton - Green","description":"Luxurious for shawls","price":"€6,39","meterage":776.15,"weight":407.23},
+{"name":"Bernat - Wool - Red","description":"Soft and cozy for scarves","price":"€9,59","meterage":672.21,"weight":308.64},
+{"name":"Red Heart - Cotton - Green","description":"Luxurious for shawls","price":"€4,47","meterage":503.65,"weight":131.37},
+{"name":"Bernat - Wool - Red","description":"Luxurious for shawls","price":"€0,42","meterage":629.04,"weight":467.4},
+{"name":"Bernat - Wool - Red","description":"Durable for blankets","price":"€4,22","meterage":935.25,"weight":228.77},
+{"name":"Lion Brand - Acrylic - Blue","description":"Durable for blankets","price":"€1,96","meterage":119.53,"weight":105.99},
+{"name":"Bernat - Wool - Red","description":"Vibrant colors for hats","price":"€9,32","meterage":916.58,"weight":135.06},
+{"name":"Lion Brand - Acrylic - Blue","description":"Soft and cozy for scarves","price":"€0,04","meterage":405.85,"weight":463.95},
+{"name":"Lion Brand - Acrylic - Blue","description":"Soft and cozy for scarves","price":"€7,25","meterage":310.58,"weight":145.73},
+{"name":"Caron - Bamboo - Yellow","description":"Vibrant colors for hats","price":"€9,82","meterage":888.25,"weight":263.6},
+{"name":"Caron - Bamboo - Yellow","description":"Vibrant colors for hats","price":"€8,42","meterage":515.57,"weight":408.72},
+{"name":"Red Heart - Cotton - Green","description":"Durable for blankets","price":"€1,77","meterage":73.91,"weight":316.7},
+{"name":"Red Heart - Cotton - Green","description":"Luxurious for shawls","price":"€8,48","meterage":660.51,"weight":494.05},
+{"name":"Red Heart - Cotton - Green","description":"Soft and cozy for scarves","price":"€1,57","meterage":198.88,"weight":355.5}]
