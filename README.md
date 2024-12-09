@@ -26,7 +26,6 @@ Add materials (Implemented)
 READ 
 User's Login (Implemented)
 View Projects (implemented)
-Search Projects (In progress)
 
  
 UPDATE 
@@ -38,7 +37,6 @@ Change projects' status (Implemented)
 
 DELETE 
 Delete materials (Implemented)
-Delete pictures ( In progress) 
 Delete Projects (Implemented)
 
 
