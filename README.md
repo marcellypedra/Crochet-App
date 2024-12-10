@@ -42,5 +42,6 @@ Delete Projects (Implemented)
 
  
 
-Public documents: https://mydbs-my.sharepoint.com/:f:/g/personal/20040674_mydbs_ie/Es2MPxiRzalBta85CPmr99ABfffBpMMyB3VqTyn5WeT5ZQ?email=89382%40mydbs.ie&e=d3Vgm1
+Public documents: https://drive.google.com/drive/folders/1YNTVuR12VdAW1-lMuSQWXsh91LgQ4WgP?usp=drive_link
+
 
