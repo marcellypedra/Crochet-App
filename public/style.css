@@ -58,8 +58,20 @@
   background-color: rgb(251, 250, 253);
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 }
+
+.formLogin label,
+.formLogin input {
+  width: 100%; 
+  margin-bottom: 10px;
+}
+
+
 /* Styling for form buttons */
 .btn {
   width: 48%;
@@ -71,6 +83,13 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   color:rgb(161, 123, 161) ;
+  
+}
+
+.btnForm {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 .btn:hover {
   background-color: hsl(63, 74%, 65%); /* Darker shade of teal */
@@ -165,6 +184,8 @@ select:focus {
 select:hover {
   background-color: #f0f0f0; 
 }
+
+
 
 
 
