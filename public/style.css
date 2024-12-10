@@ -51,8 +51,8 @@
   color: rgb(53, 34, 53);;
   padding: 20px;
   text-align: center;
-  position:fixed;
-  bottom: 0%;
+  position:static;
+  
 
 }
 .formLogin {
