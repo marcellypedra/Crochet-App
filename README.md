@@ -1,6 +1,6 @@
 # System My Yarn.com Projects
 ## Author: Marcelly Pedra | 20040674
-### Programe: MscIn Information Systems
+### Programe: Msc in Information Systems
 ### Module:	2425_TMD1 - Programming for Information Systems
 
 * Description: 
@@ -58,38 +58,8 @@ Change projects' status (Implemented)
 
 ### DELETE 
 Delete materials (Implemented)
-=======
-CREATE:
-Create User's account (implemented),
-Create projects (Implemented),
-Add materials (Implemented)
 
- 
-
-READ: 
-User's Login (Implemented),
-View Projects (implemented)
-
- 
-UPDATE: 
-Reset user's password (Implemented),
-Update project details(Implemented),
-Insert pictures (Implemented),
-Change projects' status (Implemented)
+### Documentation: ```https://drive.google.com/drive/folders/1YNTVuR12VdAW1-lMuSQWXsh91LgQ4WgP?usp=drive_link```
 
 
-DELETE 
-Delete materials (Implemented),
->>>>>>> 5c6db55448ae035b74886f852554c6e659d55948
-Delete Projects (Implemented)
-
-
- 
-
-<<<<<<< HEAD
-### Public documents: ```https://mydbs-my.sharepoint.com/:f:/g/personal/20040674_mydbs_ie/Es2MPxiRzalBta85CPmr99ABfffBpMMyB3VqTyn5WeT5ZQ?email=89382%40mydbs.ie&e=d3Vgm1```
-=======
-Documentation: https://drive.google.com/drive/folders/1YNTVuR12VdAW1-lMuSQWXsh91LgQ4WgP?usp=drive_link
-
->>>>>>> 5c6db55448ae035b74886f852554c6e659d55948
 
