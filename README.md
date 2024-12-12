@@ -8,6 +8,9 @@ Website where the user can track their crochet projects.
 Users can create an account;
 Users can create, update e delete projects.
 
+* Documentation:
+   https://drive.google.com/drive/folders/1YNTVuR12VdAW1-lMuSQWXsh91LgQ4WgP?usp=drive_link
+
 
 ## Prepare System to run locally
 1. git clone https://github.com/marcellypedra/Crochet-App.git
@@ -58,7 +61,6 @@ Change projects' status (Implemented)
 ### DELETE 
 Delete materials (Implemented)
 
-### Documentation: https://drive.google.com/drive/folders/1YNTVuR12VdAW1-lMuSQWXsh91LgQ4WgP?usp=drive_link
 
 
 
