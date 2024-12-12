@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const os = require("os");
 const multer = require ('multer'); //include multer for picture hadling
 const bcrypt = require('bcryptjs'); //include bcryptjs for password hashing
 const { promisePool } = require('./db');
@@ -24,12 +25,28 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.json()); //Middleware to parse JSON
 app.use(express.urlencoded({ extended: true }));  // Middleware to parse URL-encoded bodies
 
-
+// Function to get local IP address dynamically
+function getLocalIPAddress() {
+    const localnetwork = os.localnetwork();
+    for (let networkName in localnetwork) {
+        for (let networklocal of localnetwork[networkName]) {
+            if (!networklocal.internal && networklocal.family === 'IPv4') {
+                return networklocal.address; 
+            }
+        }
+    }
+    return 'localhost'; 
+}
 
 // Get all projects
 app.get("/api/projects", async (req, res) => {
     try {
         console.log("Fetching projects...");
+        
+          // Get the local IP dynamically
+          const localIP = getLocalIPAddress();
+          const baseURL = `http://${localIP}:3000`;
+
         // Query to fetch ongoing projects
         const [ongoingProjects] = await promisePool.execute('SELECT * FROM projects WHERE project_type = "ongoing"');
 
@@ -47,7 +64,7 @@ app.get("/api/projects", async (req, res) => {
 
             } 
             if (project.image) {
-                project.image = `http://20.224.113.89:3000${project.image}`;
+                project.image = `${baseURL}${project.image}`;
             
             }
         });
@@ -60,7 +77,7 @@ app.get("/api/projects", async (req, res) => {
 
             } 
             if (project.image) {
-                project.image = `http://20.224.113.89:3000${project.image}`;
+                project.image = `${baseURL}${project.image}`;
             
             } 
         });
