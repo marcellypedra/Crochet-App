@@ -17,26 +17,26 @@ CRUD OPERATIONS DETAILS:
 
 CREATE
 
-Create User's account (implemented)
-Create projects (Implemented)
+Create User's account (implemented),
+Create projects (Implemented),
 Add materials (Implemented)
 
  
 
 READ 
-User's Login (Implemented)
+User's Login (Implemented),
 View Projects (implemented)
 
  
 UPDATE 
-Reset user's password (Implemented)
-Update project details(Implemented)
-Insert pictures (Implemented)
+Reset user's password (Implemented),
+Update project details(Implemented),
+Insert pictures (Implemented),
 Change projects' status (Implemented)
 
 
 DELETE 
-Delete materials (Implemented)
+Delete materials (Implemented),
 Delete Projects (Implemented)
 
 
