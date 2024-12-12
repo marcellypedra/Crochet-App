@@ -29,10 +29,10 @@ Users can create, update e delete projects.
 8. Update your ```package.json``` file with script for test "mocha test/unittest.test.js"
 
 8. Deploy the system running:
-```node server.js``
+```node server.js nohup &``
 
 9. Run unit tests with the following command:
-```node test``
+```npm test``
 
 ## Main Features (CRUD Operations Details):
 
