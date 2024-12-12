@@ -16,7 +16,6 @@ Users can create, update e delete projects.
 CRUD OPERATIONS DETAILS:
 
 CREATE:
-
 Create User's account (implemented),
 Create projects (Implemented),
 Add materials (Implemented)
@@ -42,6 +41,6 @@ Delete Projects (Implemented)
 
  
 
-Public documents: https://drive.google.com/drive/folders/1YNTVuR12VdAW1-lMuSQWXsh91LgQ4WgP?usp=drive_link
+Documentation: https://drive.google.com/drive/folders/1YNTVuR12VdAW1-lMuSQWXsh91LgQ4WgP?usp=drive_link
 
 
