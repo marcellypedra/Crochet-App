@@ -3,7 +3,7 @@
 ### Programe: Msc in Information Systems
 ### Module:	2425_TMD1 - Programming for Information Systems
 
-* Description: 
+### Description: 
 Website where the user can track their crochet projects.
 Users can create an account;
 Users can create, update e delete projects.
@@ -14,7 +14,6 @@ Users can create, update e delete projects.
 
 2. Configure inbound port 3000 in your machine
 
-<<<<<<< HEAD
 3. Make the script executable by giving it the correct permissions.
 
 ```chmod +x mysql.sh local.sh```
@@ -35,7 +34,7 @@ Users can create, update e delete projects.
 9. Run unit tests with the following command:
 ```node test``
 
-## MAIN FEATURES (CRUD OPERATIONS DETAILS):
+## Main Features (CRUD Operations Details):
 
 ### CREATE
 
