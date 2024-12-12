@@ -1,46 +1,66 @@
-Crochet App
+# System My Yarn.com Projects
+## Author: Marcelly Pedra | 20040674
+### Programe: MscIn Information Systems
+### Module:	2425_TMD1 - Programming for Information Systems
 
-Project for Programming Information Systems 
-
+* Description: 
 Website where the user can track their crochet projects.
-
-Main features:
-
 Users can create an account;
-
 Users can create, update e delete projects.
 
-   
 
+## Prepare System to run locally
+1. git clone https://github.com/marcellypedra/Crochet-App.git
 
-CRUD OPERATIONS DETAILS:
+2. Configure inbound port 3000 in your machine
 
-CREATE
+3. Make the script executable by giving it the correct permissions.
+
+```chmod +x mysql.sh local.sh```
+
+4. update the file ```mysql.sh```with your password and username
+
+5. run ```mysql.sh``` to create and configurate MySQL database
+
+6. Update file ```db.js``` with your MySQL password;
+
+7. run  ```local.sh``` to install all necessary apps for create API.
+
+8. Update your ```package.json``` file with script for test "mocha test/unittest.test.js"
+
+8. Deploy the system running:
+```node server.js``
+
+9. Run unit tests with the following command:
+```node test``
+
+## MAIN FEATURES (CRUD OPERATIONS DETAILS):
+
+### CREATE
 
 Create User's account (implemented)
 Create projects (Implemented)
 Add materials (Implemented)
 
  
-
-READ 
+### READ 
 User's Login (Implemented)
 View Projects (implemented)
 
  
-UPDATE 
+### UPDATE 
 Reset user's password (Implemented)
 Update project details(Implemented)
 Insert pictures (Implemented)
 Change projects' status (Implemented)
 
 
-DELETE 
+### DELETE 
 Delete materials (Implemented)
 Delete Projects (Implemented)
 
 
  
 
-Public documents: https://mydbs-my.sharepoint.com/:f:/g/personal/20040674_mydbs_ie/Es2MPxiRzalBta85CPmr99ABfffBpMMyB3VqTyn5WeT5ZQ?email=89382%40mydbs.ie&e=d3Vgm1
+### Public documents: ```https://mydbs-my.sharepoint.com/:f:/g/personal/20040674_mydbs_ie/Es2MPxiRzalBta85CPmr99ABfffBpMMyB3VqTyn5WeT5ZQ?email=89382%40mydbs.ie&e=d3Vgm1```
 
