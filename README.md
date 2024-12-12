@@ -15,7 +15,7 @@ Users can create, update e delete projects.
 
 CRUD OPERATIONS DETAILS:
 
-CREATE
+CREATE:
 
 Create User's account (implemented),
 Create projects (Implemented),
@@ -23,12 +23,12 @@ Add materials (Implemented)
 
  
 
-READ 
+READ: 
 User's Login (Implemented),
 View Projects (implemented)
 
  
-UPDATE 
+UPDATE: 
 Reset user's password (Implemented),
 Update project details(Implemented),
 Insert pictures (Implemented),
