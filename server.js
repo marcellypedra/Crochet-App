@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));  // Middleware to parse URL-enc
 
 // Function to get local IP address dynamically
 function getLocalIPAddress() {
-    const localnetwork = os.localnetwork();
+    const localnetwork = os.networkInterfaces();
     for (let networkName in localnetwork) {
         for (let networklocal of localnetwork[networkName]) {
             if (!networklocal.internal && networklocal.family === 'IPv4') {
