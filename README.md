@@ -14,6 +14,7 @@ Users can create, update e delete projects.
 
 2. Configure inbound port 3000 in your machine
 
+<<<<<<< HEAD
 3. Make the script executable by giving it the correct permissions.
 
 ```chmod +x mysql.sh local.sh```
@@ -57,10 +58,38 @@ Change projects' status (Implemented)
 
 ### DELETE 
 Delete materials (Implemented)
+=======
+CREATE:
+Create User's account (implemented),
+Create projects (Implemented),
+Add materials (Implemented)
+
+ 
+
+READ: 
+User's Login (Implemented),
+View Projects (implemented)
+
+ 
+UPDATE: 
+Reset user's password (Implemented),
+Update project details(Implemented),
+Insert pictures (Implemented),
+Change projects' status (Implemented)
+
+
+DELETE 
+Delete materials (Implemented),
+>>>>>>> 5c6db55448ae035b74886f852554c6e659d55948
 Delete Projects (Implemented)
 
 
  
 
+<<<<<<< HEAD
 ### Public documents: ```https://mydbs-my.sharepoint.com/:f:/g/personal/20040674_mydbs_ie/Es2MPxiRzalBta85CPmr99ABfffBpMMyB3VqTyn5WeT5ZQ?email=89382%40mydbs.ie&e=d3Vgm1```
+=======
+Documentation: https://drive.google.com/drive/folders/1YNTVuR12VdAW1-lMuSQWXsh91LgQ4WgP?usp=drive_link
+
+>>>>>>> 5c6db55448ae035b74886f852554c6e659d55948
 
